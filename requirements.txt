@@ -1,0 +1,10 @@
+# CUDA-enabled PyTorch should be installed for the target GPU/CUDA stack first.
+torch==2.5.1
+transformers==4.45.1
+datasets==5.0.0
+numpy
+requests
+rouge
+jieba
+fuzzywuzzy
+pytest
