@@ -1,17 +1,11 @@
-# TAC-VQ research code (anonymous source release)
+# TAC-VQ: KV-cache codebook calibration
 
-This source-only repository contains the quantized KV-cache operators and the
-Mistral-v0.1 value-codebook-only calibration/evaluation drivers used in the
-follow-up experiments. It does **not** contain model weights, fitted parent
-codebooks, raw datasets, tokenized windows, per-example predictions, or
-training checkpoints. It therefore supports inspection and rerunning **once
-the external inputs are supplied**; by itself it cannot regenerate every
-numerical result in the paper. In particular, the exact weighted GSRQ and CQ
-parent fitting pipelines and their artifacts are not included here.
+Research code for value-codebook calibration of vector-quantized KV caches.
+The repository includes quantization operators, fixed experiment protocols,
+Mistral-7B calibration and evaluation runners, and tests.
 
-The code was tested with Python 3.10, PyTorch 2.5.1+cu121, Transformers
-4.45.1, Datasets 5.0.0, and NVIDIA A100 80 GB GPUs. Other versions, especially
-Transformers attention internals, may change the result.
+Tested with Python 3.10, PyTorch 2.5.1+cu121, Transformers 4.45.1,
+Datasets 5.0.0, and NVIDIA A100 80 GB GPUs.
 
 ## Contents
 
@@ -25,8 +19,8 @@ Transformers attention internals, may change the result.
   LongBench-7 generation records for Table 3.
 - `experiments_followup_mistral/prepare_*.py`: training/evaluation input
   construction, with row identities and hashes in generated local manifests.
-- `experiments_followup_mistral/summarize_followup.py`: summary construction
-  from completed window/prediction records; it does not rerun inference.
+- `experiments_followup_mistral/summarize_followup.py`: aggregates completed
+  window and prediction records.
 - `protocols_followup_mistral/frozen_job_manifest.json`: predeclared training
   settings, schedules, and seeds.
 
@@ -37,15 +31,12 @@ remaining dependencies in `requirements.txt`. Set `PYTHONPATH=src:.` for the
 commands below. Local input paths are configured in `release_config.py` and
 can be overridden by the corresponding `TACVQ_*` environment variables.
 
-Required external inputs include Mistral-7B-v0.1 and
-Mistral-7B-Instruct-v0.1 model snapshots; C4 and WikiText-2 Arrow files;
-the seven-domain panel source files; the official LongBench source checkout,
-its seven JSONL task files; and model-matched parent codebooks. These inputs
-must be obtained under their own licenses and placed in `external_inputs/`
-or pointed to with `TACVQ_*` variables. The `external_inputs/` directory is
-ignored by Git.
-The runners load PyTorch checkpoint objects with `weights_only=False`; only
-use checkpoint files from a trusted source.
+Place the Mistral-7B-v0.1 and Mistral-7B-Instruct-v0.1 snapshots, C4 and
+WikiText-2 Arrow files, seven-domain panel data, official LongBench source
+and seven task files, and model-matched parent codebooks in `external_inputs/`,
+or set their paths with `TACVQ_*` variables. These external inputs and the
+parent-fitting artifacts are not distributed here. Obtain them under their
+respective licenses. Load checkpoint files only from a trusted source.
 
 For the Base model, parent directories must be named `base_gsrq1`,
 `base_gsrq2`, `base_cq1`, `base_cq2` under `TACVQ_PARENT_ROOT`, each with
@@ -67,8 +58,8 @@ Before GPU training, run `build_inventory.py` to validate parent shapes and
 hashes, and `check_mistral_attention.py` for both model variants to check
 native-versus-adapter attention. The latter reads
 `external_inputs/smoke_tokens.pt`, a local torch dict with `token_ids`.
-Inspect all generated manifests before proceeding. They contain machine-local
-paths and must **not** be committed to a double-blind release.
+Generated manifests contain machine-local paths; keep them outside the
+double-blind source release.
 
 ## Fixed experiment settings
 
@@ -83,28 +74,13 @@ endpoint hashes before resuming.
 
 The seven LongBench tasks are narrativeqa, qasper, multifieldqa_en, qmsum,
 musique, triviaqa, and samsum, with respective task counts 200, 200, 150,
-200, 200, 200, and 200. The local runner uses greedy generation and an 8,192
-token total limit with a 4,096-token native Mistral sliding window. It does
-not implement the full official LongBench task collection. The separate
-official LongBench metrics are loaded from the user-supplied checkout.
+200, 200, 200, and 200. The local runner uses greedy generation, an 8,192-token
+total limit, a 4,096-token native Mistral sliding window, and official metrics
+from the supplied LongBench checkout.
 
 Table 1 evaluates 256 C4 windows and all complete 8,192-token windows in
 the joined WikiText-2 test stream. Table 2 evaluates 64 windows each for
 C4, WikiText-2, FineWeb-Edu, and CodeParrot, plus 32 each for ARC,
 HellaSwag, and OpenBookQA. All PPL windows use next-token loss on 2,047 or
-8,191 targets per window, respectively; the exact selected rows and token
-hashes are written by the preparation scripts, not embedded in this archive.
-
-## Limits on reproducibility and anonymity
-
-This is an auditable **code release**, not a complete raw-experiment archive.
-The omitted parent codebooks and model/data dependencies prevent a clean-room
-reproduction of the reported scores from this repository alone. Aggregate
-tables regenerated from summaries do not count as a rerun of training or
-evaluation. Generated local manifests may record hostnames, absolute paths,
-GPU identifiers, and file hashes; review them before any future publication.
-The anonymized source and protocol wording differ from the original private
-run, so source-file and whole-manifest SHA-256 values will also differ even
-when the numerical experiment settings are unchanged.
-No author names, email addresses, machine paths, model weights, or raw
-benchmark examples are intentionally included in the tracked source tree.
+8,191 targets per window, respectively. Preparation scripts record the exact
+selected rows and token hashes.
