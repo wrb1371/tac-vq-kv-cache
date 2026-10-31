@@ -1,0 +1,23 @@
+{
+  "id": "AR22_GSRQTier",
+  "family": "GSRQ",
+  "module": "ar22kv.private_control",
+  "class": "TierPrivate",
+  "package": "artifacts/ar19/packages/private_R2",
+  "budget_mib": 16,
+  "policy": {
+    "package_by_budget": {
+      "16": "artifacts/ar22/private_tiers/R2",
+      "32": "artifacts/ar22/private_tiers/R4",
+      "64": "artifacts/ar22/private_tiers/R8"
+    },
+    "read_mode": "fused"
+  },
+  "attention_backend": "gqa",
+  "duration_budget_policy": {
+    "short": 16,
+    "medium": 32,
+    "long": 64
+  },
+  "identity": "Predeclared fixed historical private dictionary R2/R4/R8 per16/32/64MiB tier, no QA fitting; same ordinary integer-byte depth plan"
+}

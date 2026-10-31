@@ -1,0 +1,674 @@
+[
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "A25_S000_RO",
+    "group": "short",
+    "accuracy_pct": 68.22222222222223,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "A25_S000_RO",
+    "group": "medium",
+    "accuracy_pct": 56.55555555555556,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "A25_S000_RO",
+    "group": "long",
+    "accuracy_pct": 47.333333333333336,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "A25_S000_RO",
+    "group": "ALL",
+    "accuracy_pct": 57.370370370370374,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "A25_S000_RO",
+    "group": "short",
+    "accuracy_pct": 71.66666666666667,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "A25_S000_RO",
+    "group": "medium",
+    "accuracy_pct": 64.44444444444444,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "A25_S000_RO",
+    "group": "long",
+    "accuracy_pct": 53.888888888888886,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "A25_S000_RO",
+    "group": "ALL",
+    "accuracy_pct": 63.333333333333336,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "NoDecodedFeedback",
+    "group": "short",
+    "accuracy_pct": 66.44444444444444,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "NoDecodedFeedback",
+    "group": "medium",
+    "accuracy_pct": 54.333333333333336,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "NoDecodedFeedback",
+    "group": "long",
+    "accuracy_pct": 48.0,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "NoDecodedFeedback",
+    "group": "ALL",
+    "accuracy_pct": 56.25925925925926,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "NoDecodedFeedback",
+    "group": "short",
+    "accuracy_pct": 71.66666666666667,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "NoDecodedFeedback",
+    "group": "medium",
+    "accuracy_pct": 64.22222222222223,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "NoDecodedFeedback",
+    "group": "long",
+    "accuracy_pct": 54.77777777777778,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "NoDecodedFeedback",
+    "group": "ALL",
+    "accuracy_pct": 63.55555555555556,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "NoLocalMatch",
+    "group": "short",
+    "accuracy_pct": 67.88888888888889,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "NoLocalMatch",
+    "group": "medium",
+    "accuracy_pct": 55.0,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "NoLocalMatch",
+    "group": "long",
+    "accuracy_pct": 48.333333333333336,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "NoLocalMatch",
+    "group": "ALL",
+    "accuracy_pct": 57.074074074074076,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "NoLocalMatch",
+    "group": "short",
+    "accuracy_pct": 71.33333333333333,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "NoLocalMatch",
+    "group": "medium",
+    "accuracy_pct": 64.66666666666667,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "NoLocalMatch",
+    "group": "long",
+    "accuracy_pct": 54.22222222222222,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "NoLocalMatch",
+    "group": "ALL",
+    "accuracy_pct": 63.407407407407405,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "NoInnovation",
+    "group": "short",
+    "accuracy_pct": 59.666666666666664,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "NoInnovation",
+    "group": "medium",
+    "accuracy_pct": 50.22222222222222,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "NoInnovation",
+    "group": "long",
+    "accuracy_pct": 44.77777777777778,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "NoInnovation",
+    "group": "ALL",
+    "accuracy_pct": 51.55555555555556,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "NoInnovation",
+    "group": "short",
+    "accuracy_pct": 62.44444444444444,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "NoInnovation",
+    "group": "medium",
+    "accuracy_pct": 55.44444444444444,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "NoInnovation",
+    "group": "long",
+    "accuracy_pct": 52.77777777777778,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "NoInnovation",
+    "group": "ALL",
+    "accuracy_pct": 56.888888888888886,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "Independent",
+    "group": "short",
+    "accuracy_pct": 51.111111111111114,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "Independent",
+    "group": "medium",
+    "accuracy_pct": 45.55555555555556,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "Independent",
+    "group": "long",
+    "accuracy_pct": 42.0,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "Independent",
+    "group": "ALL",
+    "accuracy_pct": 46.22222222222222,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "Independent",
+    "group": "short",
+    "accuracy_pct": 68.0,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "Independent",
+    "group": "medium",
+    "accuracy_pct": 59.44444444444444,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "Independent",
+    "group": "long",
+    "accuracy_pct": 47.77777777777778,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "Independent",
+    "group": "ALL",
+    "accuracy_pct": 58.407407407407405,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "JointContent",
+    "group": "short",
+    "accuracy_pct": 62.111111111111114,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "JointContent",
+    "group": "medium",
+    "accuracy_pct": 51.0,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "JointContent",
+    "group": "long",
+    "accuracy_pct": 45.111111111111114,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "JointContent",
+    "group": "ALL",
+    "accuracy_pct": 52.74074074074074,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "JointContent",
+    "group": "short",
+    "accuracy_pct": 69.11111111111111,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "JointContent",
+    "group": "medium",
+    "accuracy_pct": 63.44444444444444,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "JointContent",
+    "group": "long",
+    "accuracy_pct": 49.44444444444444,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "JointContent",
+    "group": "ALL",
+    "accuracy_pct": 60.666666666666664,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "UniformJoint",
+    "group": "short",
+    "accuracy_pct": 61.0,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "UniformJoint",
+    "group": "medium",
+    "accuracy_pct": 51.333333333333336,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "UniformJoint",
+    "group": "long",
+    "accuracy_pct": 44.333333333333336,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "UniformJoint",
+    "group": "ALL",
+    "accuracy_pct": 52.22222222222222,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "UniformJoint",
+    "group": "short",
+    "accuracy_pct": 68.66666666666667,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "UniformJoint",
+    "group": "medium",
+    "accuracy_pct": 60.888888888888886,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "UniformJoint",
+    "group": "long",
+    "accuracy_pct": 51.22222222222222,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "UniformJoint",
+    "group": "ALL",
+    "accuracy_pct": 60.25925925925926,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "FixedIStableProbe",
+    "group": "short",
+    "accuracy_pct": 67.66666666666667,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "FixedIStableProbe",
+    "group": "medium",
+    "accuracy_pct": 54.44444444444444,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "FixedIStableProbe",
+    "group": "long",
+    "accuracy_pct": 46.666666666666664,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "FixedIStableProbe",
+    "group": "ALL",
+    "accuracy_pct": 56.25925925925926,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "FixedIStableProbe",
+    "group": "short",
+    "accuracy_pct": 71.11111111111111,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "FixedIStableProbe",
+    "group": "medium",
+    "accuracy_pct": 65.11111111111111,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "FixedIStableProbe",
+    "group": "long",
+    "accuracy_pct": 53.77777777777778,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "FixedIStableProbe",
+    "group": "ALL",
+    "accuracy_pct": 63.333333333333336,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "A25_S100",
+    "group": "short",
+    "accuracy_pct": 69.0,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "A25_S100",
+    "group": "medium",
+    "accuracy_pct": 55.77777777777778,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "A25_S100",
+    "group": "long",
+    "accuracy_pct": 47.55555555555556,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "A25_S100",
+    "group": "ALL",
+    "accuracy_pct": 57.44444444444444,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "A25_S100",
+    "group": "short",
+    "accuracy_pct": 71.66666666666667,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "A25_S100",
+    "group": "medium",
+    "accuracy_pct": 64.55555555555556,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "A25_S100",
+    "group": "long",
+    "accuracy_pct": 53.44444444444444,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "A25_S100",
+    "group": "ALL",
+    "accuracy_pct": 63.22222222222222,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "FixedGIStableProbe",
+    "group": "short",
+    "accuracy_pct": 65.11111111111111,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "FixedGIStableProbe",
+    "group": "medium",
+    "accuracy_pct": 53.111111111111114,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "FixedGIStableProbe",
+    "group": "long",
+    "accuracy_pct": 46.0,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "FixedGIStableProbe",
+    "group": "ALL",
+    "accuracy_pct": 54.74074074074074,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "FixedGIStableProbe",
+    "group": "short",
+    "accuracy_pct": 68.77777777777777,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "FixedGIStableProbe",
+    "group": "medium",
+    "accuracy_pct": 63.44444444444444,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "FixedGIStableProbe",
+    "group": "long",
+    "accuracy_pct": 54.333333333333336,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "FixedGIStableProbe",
+    "group": "ALL",
+    "accuracy_pct": 62.18518518518518,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "AR24_NoProbe",
+    "group": "short",
+    "accuracy_pct": 69.11111111111111,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "AR24_NoProbe",
+    "group": "medium",
+    "accuracy_pct": 55.22222222222222,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "AR24_NoProbe",
+    "group": "long",
+    "accuracy_pct": 47.55555555555556,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "AR24_NoProbe",
+    "group": "ALL",
+    "accuracy_pct": 57.2962962962963,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "AR24_NoProbe",
+    "group": "short",
+    "accuracy_pct": 72.33333333333333,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "AR24_NoProbe",
+    "group": "medium",
+    "accuracy_pct": 64.55555555555556,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "AR24_NoProbe",
+    "group": "long",
+    "accuracy_pct": 53.44444444444444,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "AR24_NoProbe",
+    "group": "ALL",
+    "accuracy_pct": 63.44444444444444,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "AR24_Additive",
+    "group": "short",
+    "accuracy_pct": 68.22222222222223,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "AR24_Additive",
+    "group": "medium",
+    "accuracy_pct": 56.44444444444444,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "AR24_Additive",
+    "group": "long",
+    "accuracy_pct": 47.0,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-Omni-3B",
+    "profile": "AR24_Additive",
+    "group": "ALL",
+    "accuracy_pct": 57.22222222222222,
+    "source": "AR27_retained"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "AR24_Additive",
+    "group": "short",
+    "accuracy_pct": 71.88888888888889,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "AR24_Additive",
+    "group": "medium",
+    "accuracy_pct": 65.55555555555556,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "AR24_Additive",
+    "group": "long",
+    "accuracy_pct": 53.666666666666664,
+    "source": "AR33"
+  },
+  {
+    "model": "Qwen2.5-VL-7B-Instruct",
+    "profile": "AR24_Additive",
+    "group": "ALL",
+    "accuracy_pct": 63.7037037037037,
+    "source": "AR33"
+  }
+]

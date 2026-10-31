@@ -1,0 +1,19 @@
+{
+  "id": "AR22_CoRDS",
+  "family": "VIDEO_PRUNE",
+  "module": "ar21store.selector_async",
+  "class": "AsyncVideoPrune",
+  "package": "artifacts/ar19/packages/NO_CODEBOOK",
+  "budget_mib": 16,
+  "policy": {
+    "selector": "cords"
+  },
+  "paper_comparison_scope": "budget-adapted finite-prefix selector port; not original streaming system",
+  "attention_backend": "gqa",
+  "execution_equivalence": "same trim arithmetic/argmax/min/sorted indices; device-index submission avoids per-seed CPU fence",
+  "duration_budget_policy": {
+    "short": 16,
+    "medium": 32,
+    "long": 64
+  }
+}

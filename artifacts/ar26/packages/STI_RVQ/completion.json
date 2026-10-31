@@ -1,0 +1,92 @@
+{
+  "completed": true,
+  "model": "Qwen2.5-VL-7B-Instruct",
+  "geometry": [
+    28,
+    28,
+    4,
+    128
+  ],
+  "static_tensor_bytes": 278528,
+  "global_SHA256": "a75b36050fea510b4fc03251b0b59335002891e2a78ec69ca5f6d4cd077ab8ce",
+  "calibration_completion_SHA256": "0f92cb2dd58b075e54ee38876d8143738c1bb1ef400544b8af4013890c0dcd13",
+  "labels_used": false,
+  "trace": {
+    "K": [
+      {
+        "side": "K",
+        "stage": 1,
+        "weighted_MSE": 9.121116638183594,
+        "seconds": 4.551467418670654
+      },
+      {
+        "side": "K",
+        "stage": 2,
+        "weighted_MSE": 5.215090751647949,
+        "seconds": 4.628990888595581
+      },
+      {
+        "side": "K",
+        "stage": 3,
+        "weighted_MSE": 2.9890384674072266,
+        "seconds": 4.706572532653809
+      },
+      {
+        "side": "K",
+        "stage": 4,
+        "weighted_MSE": 1.7168115377426147,
+        "seconds": 4.786683797836304
+      },
+      {
+        "side": "K",
+        "stage": 5,
+        "weighted_MSE": 0.9901654720306396,
+        "seconds": 4.866876125335693
+      },
+      {
+        "side": "K",
+        "stage": 6,
+        "weighted_MSE": 0.5726841688156128,
+        "seconds": 4.94770359992981
+      }
+    ],
+    "V": [
+      {
+        "side": "V",
+        "stage": 1,
+        "weighted_MSE": 9.144593238830566,
+        "seconds": 5.149381637573242
+      },
+      {
+        "side": "V",
+        "stage": 2,
+        "weighted_MSE": 5.230203151702881,
+        "seconds": 5.23290753364563
+      },
+      {
+        "side": "V",
+        "stage": 3,
+        "weighted_MSE": 2.997980833053589,
+        "seconds": 5.309834718704224
+      },
+      {
+        "side": "V",
+        "stage": 4,
+        "weighted_MSE": 1.7226628065109253,
+        "seconds": 5.391725778579712
+      },
+      {
+        "side": "V",
+        "stage": 5,
+        "weighted_MSE": 0.9931263327598572,
+        "seconds": 5.469970464706421
+      },
+      {
+        "side": "V",
+        "stage": 6,
+        "weighted_MSE": 0.5746539831161499,
+        "seconds": 5.553364992141724
+      }
+    ]
+  }
+}

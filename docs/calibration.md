@@ -1,0 +1,13 @@
+# Calibration and fitting sources
+
+The shipped frozen banks/tables support evaluation immediately; dense calibration vectors are not required for inference.
+
+The declared 24 media-only Video-MME sources are in `manifests/ar22/MEDIA_CAL24.json`. Supply their exact lossless frame archives under `external_inputs/frames` and source videos under `external_inputs/raw`. The prompt is a neutral description suffix; calibration captures only the video prefix. Source frame sampling and clock handling use `scripts/sample_video.py`.
+
+The retained native calibration drivers use historical relative paths. For these optional refitting drivers, link the Omni model at `assets/round13/models/Qwen2.5-Omni-3B` and the VL model at `artifacts/ar26/models/Qwen2.5-VL-7B-Instruct`. They resolve inside this checkout. The public evaluation CLI instead accepts `--model-dir` directly.
+
+For VL, `ar26_vl_capture.py --run-id AR26_VL_MEDIA_CAL24_v1 --data manifests/ar22/MEDIA_CAL24.json` captures 512 deterministic K/V vectors per layer/head and prefix query moments. `ar26_vl_fit.py --run-id YOUR_FIT` fits the shared codec and private five-stage GSRQ controls; `ar26_vl_calibrate.py --run-id YOUR_CURVES` constructs the conditional and depth tables from the 24 prefixes. Longer private GSRQ prefixes use `ar29_fit_private.py`; NOVA fitting uses `ar30_fit_nova.py`. Those fitting programs record package receipts and their exact tensor hashes. Inspect their output paths before replacing any shipped frozen artifact, and refit in a separate checkout.
+
+For Omni, `round14_collect_calibration.py` contains the historical WorldSense reservoir and gradient-weight capture. `ar_train_crvq.py`, `ar_train_crvq_v2.py`, and `ar_train_psrvq.py` retain the original normalization, fixed train/validation slots, and six-stage 16-dimensional product-codebook fit. These optional historical drivers expect the recorded reservoir and slot manifests under their documented relative paths; those large external capture artifacts are not shipped. The frozen Omni codec is included so evaluation does not depend on recreating that historical capture. `ar22_calibrate.py` and `ar22_aggregate_calibration.py` construct the label-free occupancy-conditioned tables used by the evaluated planner.
+
+The calibration and bank-fitting drivers are source recipes, not claims of a new refit in this release. Reproduction of the reported method uses the shipped banks, table values, frozen policy, declared video inputs, native model revisions, and the public evaluator. The release's reader benchmark checks exact BF16 reconstruction before collecting timings.
