@@ -50,6 +50,7 @@ def main():
         "--method",
         choices=[
             "sti-rvq",
+            "cq",
             "bf16",
             "snapkv",
             "anchorkv",
@@ -105,7 +106,30 @@ def main():
             teacher = None
             native_cache = None
             try:
-                if a.method in [
+                if a.method == "cq":
+                    from ar37cq.runtime import Teacher
+                    from ar37cq.codec import Codec
+
+                    profiles = json.loads(
+                        (ROOT / "configs/cq/selected.json").read_text()
+                    )["groups"]
+                    key = f"{kind}/{questions[0]['dataset']}_{questions[0]['duration_group']}_{questions[0]['budget_mib']}"
+                    profile = profiles[key]
+                    teacher = Teacher(model, kind)
+                    teacher.capture(x, pos, end, identity)
+                    codec = Codec(
+                        model,
+                        kind,
+                        questions[0],
+                        pos,
+                        vi,
+                        ti,
+                        end,
+                        teacher,
+                        profile["C"],
+                        profile["c"],
+                    )
+                elif a.method in [
                     "snapkv",
                     "anchorkv",
                     "pyramidkv",
@@ -278,7 +302,11 @@ def main():
                 xx, pp, vv, tt, ee, ident = supplier.get(it)
                 assert ee == end
                 if teacher is not None:
-                    teacher.assert_same(xx, pp, ee)
+                    (
+                        teacher.assert_same(xx, pp, ee, ident)
+                        if a.method == "cq"
+                        else teacher.assert_same(xx, pp, ee)
+                    )
                 if native_cache is not None:
                     from ar22kv.evaluation import answer as score
 

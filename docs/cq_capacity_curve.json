@@ -1,0 +1,72 @@
+{
+  "completed": true,
+  "scope": "seven CQ capacity points on the full 900-question long-video split; remaining main-table evaluation separate",
+  "curve": [
+    {
+      "C": 16,
+      "c": 4,
+      "codec_bytes": 589824,
+      "questions": 900,
+      "sources": 300,
+      "correct": 368,
+      "accuracy_pct": 40.888888888888886
+    },
+    {
+      "C": 32,
+      "c": 8,
+      "codec_bytes": 1179648,
+      "questions": 900,
+      "sources": 300,
+      "correct": 365,
+      "accuracy_pct": 40.55555555555556
+    },
+    {
+      "C": 64,
+      "c": 8,
+      "codec_bytes": 2359296,
+      "questions": 900,
+      "sources": 300,
+      "correct": 368,
+      "accuracy_pct": 40.888888888888886
+    },
+    {
+      "C": 128,
+      "c": 8,
+      "codec_bytes": 4718592,
+      "questions": 900,
+      "sources": 300,
+      "correct": 372,
+      "accuracy_pct": 41.333333333333336
+    },
+    {
+      "C": 256,
+      "c": 8,
+      "codec_bytes": 9437184,
+      "questions": 900,
+      "sources": 300,
+      "correct": 396,
+      "accuracy_pct": 44.0
+    },
+    {
+      "C": 512,
+      "c": 16,
+      "codec_bytes": 18874368,
+      "questions": 900,
+      "sources": 300,
+      "correct": 376,
+      "accuracy_pct": 41.77777777777778
+    },
+    {
+      "C": 1024,
+      "c": 32,
+      "codec_bytes": 37748736,
+      "questions": 900,
+      "sources": 300,
+      "correct": 370,
+      "accuracy_pct": 41.111111111111114
+    }
+  ],
+  "unique_curve_QA": 6300,
+  "raw_SHA256": "953de817422ed101a1a747439a1acfd5737a1d8444ee2251f3b6e43c2e23464c",
+  "codebooks_and_couplings_frozen_before_QA": true
+}

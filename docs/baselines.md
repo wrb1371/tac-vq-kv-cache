@@ -15,6 +15,14 @@ The selection baselines compress the complete finite-video prefix once, before s
 BF16 retains the backbone's original keys and values and attends to every sampled position. Its reference capacity is $$C_{\rm BF16}=4LHD(M+t+Q)\quad\text{bytes},
  $$ where the factor four accounts for both K and V at two bytes per coordinate. We run this reference without the compressed methods' storage cap. It establishes the answer quality of the same model and inputs before cache compression.
 
+## CQ
+
+CQ (Coupled Quantization; [NeurIPS 2024](https://proceedings.neurips.cc/paper_files/paper/2024/hash/05d6b5b6901fb57d2c287e1d3ce6d63c-Abstract-Conference.html)) jointly codes contiguous channel groups. Each layer, physical KV head, K/V side, and channel group has its own FP16 centroids. A group of $c$ channels stores a $b=\log_2 C$-bit nearest-centroid index. The original Fisher-weighted fitting rule uses sample weight $w_i=\sum_j(\partial \mathcal L/\partial x_{ij})^2$, ordinary Euclidean assignments and weighted centroid means. Keys are encoded before MRoPE, then rotated at their original positions after decoding.
+
+Our video port obtains Fisher weights from a neutral, label-free `Describe the video.` suffix with a detached BF16 greedy target. No test question or answer is used in fitting or configuration selection. It uses 24 media-only sources (eight per duration group), with 384 fit and 128 held-out sampled positions per source/head, seeded weighted k-means++ with two restarts, at most 100 Lloyd iterations and relative tolerance $10^{-5}$. The most recent 32 visual positions and all prefix text remain BF16.
+
+All private codebooks cost $S=4LHDC$ bytes. This cost is independent of coupling $c$; payload cost decreases as $c$ increases. For each centroid count, the smallest power-of-two $c$ dividing $D$ that fits every video in the budget group is selected using input geometry alone. Main-table centroid counts minimize held-out per-coordinate Fisher-weighted relative error, without QA scores. TempCompass reuses the same fitted Video-MME banks. Physically packed 4--10-bit indices include the full query reserve. Maps, protected vectors and rotary frequencies are charged, and the actual allocation must match an independent byte oracle. See [CQ recipe and storage formula](cq.md).
+
 ## GSRQ
 
 GSRQ learns residual codebooks using gain--shape $K$-means [paper](https://proceedings.mlr.press/v306/kim26bf.html). A codeword is $\mathbf c_j=g_j\mathbf s_j$, where $\|\mathbf s_j\|_2=1$. A vector is reconstructed from a prefix of residual stages: $$\begin{aligned}

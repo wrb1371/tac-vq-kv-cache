@@ -30,7 +30,7 @@ Video-MME uses64/128/256 sampled input frames for short/medium/long videos. Tota
 - `src/ar35kv/`: geometry-generic fused reconstruction with exact reference rounding.
 - `src/ar25kv/simple_v1.py`, `src/ar24kv/pressure_switch_v1.py`, `src/ar22kv/`: evaluated Omni-3B planner, encoder, stored layout and query path.
 - `src/r14kv/fitting.py` and calibration scripts: residual codebook fitting and label-free table construction.
-- [Baseline implementation guide](docs/baselines.md): GSRQ, NOVA-KV, InfiniPot-V, CoRDS, SnapKV, AnchorKV, PyramidKV and Expected Attention. These are finite-video, question-independent ports; the guide records parameters, GQA adaptation and byte accounting.
+- [Baseline implementation guide](docs/baselines.md): CQ, GSRQ, NOVA-KV, InfiniPot-V, CoRDS, SnapKV, AnchorKV, PyramidKV and Expected Attention. These are finite-video, question-independent ports; the guide records parameters, GQA adaptation and byte accounting.
 - `src/ar33kv/`: controlled ablations with the same frozen codec.
 
 Internal implementation namespaces retain their experiment identifiers to keep the evaluated arithmetic and buffer layouts traceable. Public commands use the method and backbone names.
@@ -47,3 +47,11 @@ CUDA_VISIBLE_DEVICES=0 python scripts/benchmark_reader.py --state outputs/states
 The reader check compares all reconstructed BF16 values, not only answers. Exact-input native question tests also compare first tokens, option logits, and the charged resident bytes. Operator benchmarks compare the reference, vectorized Torch, and fused readers using warmups and alternating CUDA-event measurements on the same packed state; they record other GPU processes. Compression quality and operator speed are measured separately.
 
 Calibration does not use question/answer labels. Frozen codebooks are reused on TempCompass. The complete benchmark reports include all2700Video-MME and1580TempCompass MC questions per model. [Reproducibility notes](docs/reproducibility.md) describe the fitted artifacts and how to prepare external baseline banks; aggregate tables are not substitutes for executing inference.
+
+## Coupled Quantization baseline
+
+CQ is an independent port of Zhang et al. (NeurIPS 2024). It uses Fisher-weighted private FP16 vector codebooks, before-MRoPE key coding and physically packed 4--10-bit indices. The paper adds a seven-capacity curve at the same complete 64 MiB total budget, and a calibration-selected row on both full benchmarks. The fitted external banks are regenerated with [the CQ recipe](docs/cq.md); they are not bundled with model weights or video data.
+
+```bash
+python scripts/evaluate.py --method cq --backbone vl7b --model-dir external_inputs/Qwen2.5-VL-7B-Instruct --baseline-root external_inputs/cq_banks --manifest external_inputs/questions.json --output outputs/cq_vl7b.jsonl
+```
