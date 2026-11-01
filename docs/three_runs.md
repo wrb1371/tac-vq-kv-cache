@@ -42,7 +42,7 @@ Omni's old full CAL64 reservoir had been deleted before this replication. It was
 
 Compute each run's accuracy from every declared question, then average its three unrounded accuracies and round the final mean to two decimals. Video-MME overall uses all 2,700 questions. For TempCompass, compute the five dimension accuracies and their unweighted macro average separately inside each run, then average the three macro averages; micro uses all 1,580 questions. An infeasible input gives no numeric aggregate for the affected group, and an overall Video-MME value requires every duration group to fit. Table 3's full-method row reuses that same run's Table 2 observations. Figures that study dictionary capacity, a particular stored layout, or operator execution retain their preselected reference codec; they are not additional three-fit experiments.
 
-The aggregator uses explicit `math.fsum` for dimension macros and run means, and offset-centered sample variability. This gives identical results in the tested Python 3.10 and 3.13 environments and keeps identical deterministic repetitions at zero standard deviation. [The complete table summaries](../results/paper_three_runs.json) retain unrounded run values and means; the manuscript displays means rounded to two decimals.
+The aggregator uses explicit `math.fsum` for dimension macros and run means, and offset-centered sample variability. This gives identical results in the tested Python 3.10 and 3.13 environments and keeps identical deterministic repetitions at zero standard deviation. Save generated predictions and summaries under `outputs/`; benchmark results are not included in this repository. The manuscript displays means rounded to two decimals.
 
 ## Table 3 restrictions
 

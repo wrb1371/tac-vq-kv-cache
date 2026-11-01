@@ -52,7 +52,7 @@ Conditional-loss calibration and VL codebook fitting use media-only prefixes. Om
 
 Tables 2 and 3 use the mean of three complete runs. [Run details](docs/three_runs.md) give the numerical RNG seeds, original per-family seed formulas, fitting settings, and artifact layout. Add `--replicate 0`, `1`, or `2` to the evaluation command to select a shipped realization. `scripts/aggregate_runs.py` averages the three unrounded run accuracies and computes TempCompass macro within each run before averaging.
 
-[Machine-readable results](results/paper_three_runs.json) include all per-run accuracies, means, and sample standard deviations for both tables.
+Generated predictions, benchmark scores, and timing reports stay local under `outputs/` and are excluded from the source release. This repository contains the implementation, seed settings, fitted codecs, calibration tables, and reproduction tools.
 
 ## Coupled Quantization baseline
 

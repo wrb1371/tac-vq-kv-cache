@@ -24,4 +24,4 @@ With `W=min(32,M)`, `P=M+t+Q`, and `b=log2(C)`, total residency is exactly
 
 The first line is the complete fixed FP16 codec. The second is the two packed index allocations plus native protected BF16 K/V at each layer. The last line counts int32 positions, coded/protected position maps and FP32 rotary frequencies. This port uses separate allocations, so there is no hidden alignment padding. Query index capacity is allocated before scoring. For read-only MC scoring the transient query attention state is execution workspace; its reserved persistent capacity remains charged.
 
-The capacity curve retains every seven-point result. Changing `C` also changes the finest feasible coupling under the fixed budget, so a larger codec is not assumed to improve answer accuracy. The curve does not select the main-table configuration by test accuracy.
+For a capacity sweep, vary `C` under the same total budget and retain all generated points locally. Changing `C` also changes the finest feasible coupling under the fixed budget. Select the main-table configuration using held-out calibration loss rather than test accuracy.
