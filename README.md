@@ -10,7 +10,7 @@ This standalone `sti-rvq` branch is the video-understanding project. The reposit
 
 Use Python3.10 and a CUDA12.4-compatible PyTorch2.5.1 installation. Then install `requirements.txt`. The experiments use Transformers4.52.3, Triton3.1 and FlashAttention2.7.4 on A10080GB. Set `PYTHONPATH=src:third_party/OmniKVQuant_snapshot` or use the scripts below, which configure it automatically.
 
-Download `Qwen/Qwen2.5-Omni-3B` and `Qwen/Qwen2.5-VL-7B-Instruct` under their model licenses. Point `--model-dir` to the selected snapshot. The two small fitted STI-RVQ codecs and calibration tables are included; models, raw videos, and external baseline banks are not bundled.
+Download `Qwen/Qwen2.5-Omni-3B` and `Qwen/Qwen2.5-VL-7B-Instruct` under their model licenses. Point `--model-dir` to the selected snapshot. Three independently fitted STI-RVQ realizations per backbone and their matching calibration tables are included; models, raw videos, and external baseline banks are not bundled.
 
 ## Run the method
 
@@ -46,7 +46,11 @@ CUDA_VISIBLE_DEVICES=0 python scripts/benchmark_reader.py --state outputs/states
 
 The reader check compares all reconstructed BF16 values, not only answers. Exact-input native question tests also compare first tokens, option logits, and the charged resident bytes. Operator benchmarks compare the reference, vectorized Torch, and fused readers using warmups and alternating CUDA-event measurements on the same packed state; they record other GPU processes. Compression quality and operator speed are measured separately.
 
-Calibration does not use question/answer labels. Frozen codebooks are reused on TempCompass. The complete benchmark reports include all2700Video-MME and1580TempCompass MC questions per model. [Reproducibility notes](docs/reproducibility.md) describe the fitted artifacts and how to prepare external baseline banks; aggregate tables are not substitutes for executing inference.
+Conditional-loss calibration and VL codebook fitting use media-only prefixes. Omni codebook fitting uses gradient-derived importance weights from the separate WorldSense calibration records. The current test question and answer never enter compression. Frozen codebooks are reused on TempCompass. The complete benchmark reports include all2700Video-MME and1580TempCompass MC questions per model. [Reproducibility notes](docs/reproducibility.md) describe the fitted artifacts and how to prepare external baseline banks; aggregate tables are not substitutes for executing inference.
+
+## Three-run evaluation
+
+Tables 2 and 3 use the mean of three complete runs. [Run details](docs/three_runs.md) give the numerical RNG seeds, original per-family seed formulas, fitting settings, and artifact layout. Add `--replicate 0`, `1`, or `2` to the evaluation command to select a shipped realization. `scripts/aggregate_runs.py` averages the three unrounded run accuracies and computes TempCompass macro within each run before averaging.
 
 ## Coupled Quantization baseline
 

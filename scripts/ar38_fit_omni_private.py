@@ -1,0 +1,29 @@
+"""Original weighted GSRQ export and NOVA-g8/C16 from the recovered CAL64 pool."""
+import argparse,gc,hashlib,json,pathlib,sys,time
+import numpy as np
+ROOT=pathlib.Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
+from ar26kv.runtime import save
+
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def record(l,p,t):return {'layer':l,'file':p.name,'SHA256':sha(p),'tensors':{k:{'shape':list(v.shape),'dtype':str(v.dtype),'storage_bytes':v.untyped_storage().nbytes()}for k,v in t.items()}}
+def main():
+ import torch
+ from r14kv.fitting import fit_rq,qpca,value_basis,lloyd_group
+ from ar26kv.codec import apply_rope
+ ap=argparse.ArgumentParser();ap.add_argument('--replicate',type=int,choices=[1,2],required=True);a=ap.parse_args();rep=a.replicate;offset=rep*1000003;start=time.time();torch.set_num_threads(4);torch.backends.cuda.matmul.allow_tf32=False;torch.cuda.set_per_process_memory_fraction(26*2**30/torch.cuda.get_device_properties(0).total_memory)
+ out=ROOT/f'data/runs/AR38_Omni_PRIVATE_r{rep}_v1';out.mkdir(parents=True,exist_ok=False);base=ROOT/f'artifacts/ar38/replicas/r{rep}';cal=ROOT/'artifacts/ar38/calibration/AR38_CAL64_compact_v2';meta=json.loads((cal/'completion.json').read_text());assert meta['completed']and meta['actual_sources']==64;cap=meta['capacity'];n=meta['actual_reservoir_positions'];mom=torch.load(cal/'NOVA_moments.pt',weights_only=True);count=mom['prefix_token_count'];coords=torch.from_numpy(np.memmap(cal/'coordinates.i32',mode='r',dtype=np.int32,shape=(cap,3))[:n].copy()).T.cuda();cfg=json.loads((ROOT/'assets/round13/models/Qwen2.5-Omni-3B/config.json').read_text());theta=cfg['thinker_config']['text_config']['rope_theta'];inv=(1/(theta**(torch.arange(0,128,2,dtype=torch.float32)/128))).cuda();g_records={r:[]for r in[2,4,8]};n_records=[]
+ save(out/'run_manifest.json',{'replicate':rep,'seed_offset':offset,'calibration_receipt_SHA256':sha(cal/'completion.json'),'source_input_identities_match_original':True,'GSRQ':'FP16 fitting before each residual; FP8 export after full fit','NOVA':'original FP64 QPCA; original g8/C16; 131072 fit samples,25 Lloyd iterations; original two-snap FP8','started_epoch':start})
+ for l in range(36):
+  pool=np.memmap(cal/f'layer{l:02}_vectors.u16',mode='r',dtype=np.uint16,shape=(2,2,cap,128));grad=np.memmap(cal/f'layer{l:02}_gradient_norms.f32',mode='r',dtype=np.float32,shape=(2,2,cap));x=torch.stack([torch.from_numpy(pool[k,h,:n].copy()).view(torch.bfloat16)for k in range(2)for h in range(2)]).cuda().float();w=torch.stack([torch.from_numpy(grad[k,h,:n].copy())for k in range(2)for h in range(2)]).cuda();seeds=[14261021+l*4+k*2+h+offset for k in range(2)for h in range(2)];books,tr=fit_rq(x,w,seeds,stages=8,iterations=40);save(out/f'gsrq_layer{l:02}.json',tr)
+  for r in[2,4,8]:
+   folder=base/f'artifacts/ar22/private_tiers/R{r}';folder.mkdir(parents=True,exist_ok=True);t={'K':books[:2,:r].to(torch.float8_e4m3fn).cpu().clone(),'V':books[2:,:r].to(torch.float8_e4m3fn).cpu().clone()};p=folder/f'layer{l:02}.pt';torch.save(t,p);g_records[r].append(record(l,p,t))
+  del x,w,books;torch.cuda.empty_cache();tables={k:[]for k in['F','A','mean','V_rotation','centroids']}
+  for h in range(2):
+   f0,a0,mean,diag=qpca(mom['q2'][l,h].cuda(),mom['k2'][l,h].cuda(),mom['ksum'][l,h].cuda(),count);oldperm=[i+j*32 for i in range(32)for j in range(4)];inverse={v:i for i,v in enumerate(oldperm)};perm=torch.tensor([inverse[i+j*16]for i in range(16)for j in range(8)],device='cuda');fwd=f0[:,perm];synth=a0[:,perm];pre=torch.from_numpy(pool[0,h,:n].copy()).view(torch.bfloat16).cuda();post=apply_rope(pre[None],coords,inv,1.)[0].float();seed=14261021+l*2+h+offset;gen=torch.Generator(device='cuda').manual_seed(seed+140000);ix=torch.randperm(n,device='cuda',generator=gen)[:131072];z=(post[ix].double()-mean)@fwd;z=z/z.square().mean(-1,keepdim=True).sqrt().clamp_min(1e-8);groups=z.reshape(-1,16,8).permute(1,0,2).float().contiguous();cent=lloyd_group(groups,seed=seed,iterations=25,clusters=16);scale=cent.abs().amax((-2,-1),keepdim=True).clamp_min(1e-12)/57344.;trained=((cent/scale).to(torch.float8_e5m2).float()*scale).half();bundle={'F':fwd.bfloat16(),'A':synth.bfloat16(),'mean':mean.bfloat16(),'V_rotation':value_basis(mom['o2'][l,h].cuda()).bfloat16(),'centroids':trained.to(torch.float8_e5m2)}
+   for k,v in bundle.items():assert torch.isfinite(v.float()).all();tables[k].append(v.cpu().clone())
+   del pre,post,z,groups,cent,trained;torch.cuda.empty_cache()
+  folder=base/'artifacts/round15/packages/nova_g8c16';folder.mkdir(parents=True,exist_ok=True);t={k:torch.stack(v).contiguous().clone()for k,v in tables.items()};p=folder/f'layer{l:02}.pt';torch.save(t,p);n_records.append(record(l,p,t));save(out/'progress.json',{'layer':l,'elapsed_s':time.time()-start});print(json.dumps({'layer':l,'replicate':rep,'elapsed_s':time.time()-start}),flush=True);gc.collect();torch.cuda.empty_cache()
+ for r in[2,4,8]:
+  records=g_records[r];save(base/f'artifacts/ar22/private_tiers/R{r}/completion.json',{'completed':True,'replicate':rep,'seed_offset':offset,'family':'GSRQ','CPU_export':True,'Rmax_K':r,'Rmax_V':r,'private_stages':r,'static_tensor_bytes':sum(v['storage_bytes']for row in records for v in row['tensors'].values()),'records':records,'calibration_receipt_SHA256':sha(cal/'completion.json')})
+ save(base/'artifacts/round15/packages/nova_g8c16/completion.json',{'completed':True,'replicate':rep,'seed_offset':offset,'family':'NOVA','CPU_export':True,'records':n_records,'static_tensor_bytes':sum(v['storage_bytes']for row in n_records for v in row['tensors'].values()),'calibration_receipt_SHA256':sha(cal/'completion.json')});save(out/'completion.json',{'completed':True,'replicate':rep,'elapsed_s':time.time()-start,'families':['GSRQ-export','NOVA-KV-g8']})
+if __name__=='__main__':main()

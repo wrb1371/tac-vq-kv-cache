@@ -1,10 +1,19 @@
 """Portable native video evaluation for the released STI-RVQ implementation."""
 
-import argparse, collections, gc, json, os, pathlib, re, sys, time
+import argparse, collections, copy, gc, json, os, pathlib, re, sys, time
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "src"), str(ROOT / "third_party/OmniKVQuant_snapshot")]
 
+
+ABLATIONS = {
+    "no-feedback": "NoDecodedFeedback", "no-local-match": "NoLocalMatch",
+    "no-innovation": "NoInnovation", "independent": "Independent",
+    "no-floor": "JointContent", "uniform": "UniformJoint",
+    "fixed-i": "FixedIStableProbe", "fixed-g": "A25_S100",
+    "fixed-gi": "FixedGIStableProbe", "no-probe": "AR24_NoProbe",
+    "separable": "AR24_Additive",
+}
 
 def load_model(backbone, model_dir):
     import torch
@@ -46,6 +55,7 @@ def main():
     ap.add_argument("--model-dir", required=True)
     ap.add_argument("--manifest", required=True)
     ap.add_argument("--output", required=True)
+    ap.add_argument("--replicate", type=int, choices=[0, 1, 2], default=0, help="Frozen independent fitted codec; see docs/three_runs.md")
     ap.add_argument(
         "--method",
         choices=[
@@ -76,7 +86,10 @@ def main():
         "--save-state-dir",
         help="Optional packed VL STI-RVQ snapshots for reader verification/benchmarking",
     )
+    ap.add_argument("--ablation", choices=list(ABLATIONS), help="Table 3 restriction; STI-RVQ on Video-MME only")
     a = ap.parse_args()
+    if a.ablation:
+        assert a.method == "sti-rvq"
     if a.save_state_dir:
         assert a.backbone == "vl7b" and a.method == "sti-rvq"
 
@@ -88,10 +101,15 @@ def main():
     from ar32kv.runtime import Supplier, answer
 
     model, p = load_model(a.backbone, a.model_dir)
+    import random, numpy as np
+    run_seed = 42 + a.replicate * 1000003
+    random.seed(run_seed); np.random.seed(run_seed); torch.manual_seed(run_seed)
     kind = "VL" if a.backbone == "vl7b" else "Omni"
     supplier = Supplier(model, p, kind)
     items = json.loads(pathlib.Path(a.manifest).read_text())
     assert items and len({x["id"] for x in items}) == len(items)
+    if a.ablation:
+        assert all(x["dataset"] == "VideoMME" for x in items)
     groups = collections.OrderedDict()
     for x in items:
         groups.setdefault(x["video"], []).append(x)
@@ -210,6 +228,11 @@ def main():
                             codec = Codec(
                                 name, model, questions[0], pos, vi, ti, end, teacher
                             )
+                        if a.method == "sti-rvq" and a.ablation:
+                            from ar33kv.codec import Ablation
+                            parent = {"plan": copy.deepcopy(codec.plan), "descs": copy.deepcopy(codec.descs), "states": {}}
+                            del codec
+                            codec = Ablation(ABLATIONS[a.ablation], model, questions[0], pos, vi, ti, end, teacher, parent)
                         if a.method == "sti-rvq" and not a.reference_reader:
                             from ar35kv.reader import install
 
@@ -230,6 +253,8 @@ def main():
                             "gsrq": "GSRQTier",
                             "nova-kv": "NOVA8",
                         }[a.method]
+                        if a.ablation:
+                            name = ABLATIONS[a.ablation]
                         spec = json.loads(
                             (ROOT / "configs/ar22" / (name + ".json")).read_text()
                         )
@@ -261,6 +286,8 @@ def main():
                                 "dataset": it["dataset"],
                                 "method": a.method,
                                 "backbone": a.backbone,
+                                "replicate": a.replicate,
+                                "inference_seed": run_seed,
                                 "status": "INFEASIBLE",
                                 "correct": None,
                                 "reason": str(exc),
@@ -328,7 +355,11 @@ def main():
                     "source_id": it["source_id"],
                     "dataset": it["dataset"],
                     "duration_group": it["duration_group"],
+                    "task_type": it.get("task_type"),
+                    "ablation": a.ablation,
                     "backbone": a.backbone,
+                                "replicate": a.replicate,
+                                "inference_seed": run_seed,
                     "method": a.method,
                     "status": "COMPLETE",
                     "input_identity": ident,
@@ -375,4 +406,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    bootstrap = argparse.ArgumentParser(add_help=False)
+    bootstrap.add_argument("--replicate", type=int, default=0)
+    selected, _ = bootstrap.parse_known_args()
+    from ar38replica.paths import use
+    with use(selected.replicate):
+        main()

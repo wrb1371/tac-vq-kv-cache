@@ -1,0 +1,93 @@
+{
+  "model": "Qwen2.5-VL-7B-Instruct",
+  "methods": [
+    "NOVA-KV-g8",
+    "NOVA-KV-g4",
+    "NSNQuant"
+  ],
+  "VideoMME_budgets_MiB": {
+    "short": 32,
+    "medium": 64,
+    "long": 128
+  },
+  "TempCompass_budget_MiB": 16,
+  "NOVA_centroids_menu": [
+    256,
+    16
+  ],
+  "NOVA_fit_samples_cap": 131072,
+  "NOVA_kmeans_iterations": 25,
+  "NOVA_seed_base": 14261021,
+  "NOVA_calibration": "manifests/ar22/MEDIA_CAL24.json",
+  "NOVA_calibration_media": 24,
+  "NOVA_groups": [
+    8,
+    4
+  ],
+  "NOVA8_bands": [
+    [
+      64,
+      256
+    ],
+    [
+      32,
+      128
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "NOVA4_bands": [
+    [
+      8,
+      32
+    ]
+  ],
+  "NOVA_v_modes": [
+    "affine2",
+    "affine1",
+    "sign1"
+  ],
+  "NSN_window": 64,
+  "NSN_bits_menu": [
+    2,
+    1
+  ],
+  "NSN_package": "artifacts/round16/packages/nsn_global",
+  "NOVA_package_root": "artifacts/ar30/packages",
+  "GPU_ids": [
+    0,
+    2,
+    3,
+    4,
+    6,
+    7
+  ],
+  "excluded_GPU_ids": [
+    1
+  ],
+  "Torch_cap_GiB": 26,
+  "minimum_free_GiB": 30,
+  "maximum_foreign_GiB": 48,
+  "max_own_workers_per_GPU": 1,
+  "max_full_workers": 6,
+  "query_reservations": "unchanged192/256/288; TempCompass192",
+  "main_algorithm_and_existing_scores_unchanged": true,
+  "calibration_labels_used": false,
+  "NOVA_fit_packages": [
+    [
+      4,
+      16
+    ],
+    [
+      8,
+      16
+    ],
+    [
+      8,
+      256
+    ]
+  ],
+  "NOVA_selection": "highest feasible key codebook cardinality first; then fixed value-mode and band menu; all geometry only before QA"
+}

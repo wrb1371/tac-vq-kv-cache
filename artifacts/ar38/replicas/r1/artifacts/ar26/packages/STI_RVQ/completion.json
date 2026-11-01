@@ -1,0 +1,68 @@
+{
+  "completed": true,
+  "replicate": 1,
+  "model": "Qwen2.5-VL-7B-Instruct",
+  "static_tensor_bytes": 278528,
+  "global_SHA256": "36cc89b25d745be5c76c22e49f3cd49fd40198cf4e9568f4f98af1e10430d421",
+  "trace": {
+    "K": [
+      {
+        "stage": 1,
+        "weighted_MSE": 9.113951683044434
+      },
+      {
+        "stage": 2,
+        "weighted_MSE": 5.211064338684082
+      },
+      {
+        "stage": 3,
+        "weighted_MSE": 2.9861583709716797
+      },
+      {
+        "stage": 4,
+        "weighted_MSE": 1.716918706893921
+      },
+      {
+        "stage": 5,
+        "weighted_MSE": 0.9891889691352844
+      },
+      {
+        "stage": 6,
+        "weighted_MSE": 0.5719878077507019
+      }
+    ],
+    "V": [
+      {
+        "stage": 1,
+        "weighted_MSE": 9.121244430541992
+      },
+      {
+        "stage": 2,
+        "weighted_MSE": 5.217892169952393
+      },
+      {
+        "stage": 3,
+        "weighted_MSE": 2.990299940109253
+      },
+      {
+        "stage": 4,
+        "weighted_MSE": 1.7187668085098267
+      },
+      {
+        "stage": 5,
+        "weighted_MSE": 0.990740954875946
+      },
+      {
+        "stage": 6,
+        "weighted_MSE": 0.5732871890068054
+      }
+    ]
+  },
+  "seed_offset": 1000003,
+  "records": [
+    {
+      "file": "global.pt",
+      "SHA256": "36cc89b25d745be5c76c22e49f3cd49fd40198cf4e9568f4f98af1e10430d421"
+    }
+  ]
+}

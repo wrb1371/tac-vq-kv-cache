@@ -1,5 +1,8 @@
 {
   "Rmax_by_group": {
+    "short": 3,
+    "medium": 6,
     "long": 7
-  }
+  },
+  "scope": "Frozen Video-MME32/64/96MiB cohort admission; TempCompassR1 is separate"
 }

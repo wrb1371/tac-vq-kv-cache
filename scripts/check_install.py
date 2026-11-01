@@ -16,16 +16,19 @@ options = [
 chosen, proof = allocate(options, 21, quantum=1)
 assert sum(x["bytes"] for x in chosen) <= 21 and proof["objective"] == 4
 assert sum(layer_quotas(497, 4, 241, 64)) == 497
-for p in [
-    ROOT / "artifacts/ar17/packages/PSRVQ_d16",
-    ROOT / "artifacts/ar26/packages/STI_RVQ",
-]:
-    metadata = json.loads((p / "completion.json").read_text())
-    assert metadata["completed"]
-    for row in metadata.get("records", []):
-        assert (
-            hashlib.sha256((p / row["file"]).read_bytes()).hexdigest() == row["SHA256"]
-        )
+from ar38replica.paths import use
+for replicate in [0, 1, 2]:
+    with use(replicate):
+        for p in [
+            ROOT / "artifacts/ar17/packages/PSRVQ_d16",
+            ROOT / "artifacts/ar26/packages/STI_RVQ",
+        ]:
+            metadata = json.loads((p / "completion.json").read_text())
+            assert metadata["completed"]
+            for row in metadata.get("records", []):
+                assert hashlib.sha256((p / row["file"]).read_bytes()).hexdigest() == row["SHA256"]
+        for relative in ["data/ar21/rate_curves.json", "data/ar22/conditional_curves.json", "data/ar26/VL_rate_curves.json", "data/ar26/VL_conditional_curves.json"]:
+            assert json.loads((ROOT / relative).read_text()).get("completed", True)
 print(
     json.dumps(
         {
@@ -33,6 +36,8 @@ print(
             "portable_imports": True,
             "exact_budget_planner": True,
             "codec_hashes": True,
+            "fitted_shared_codec_realizations": 6,
+            "matched_loss_tables_for_all_three_runs": True,
             "GPU_used": False,
         }
     )

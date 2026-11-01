@@ -1,0 +1,55 @@
+{
+  "replicates": [
+    0,
+    1,
+    2
+  ],
+  "fit_seed_offsets": [
+    0,
+    1000003,
+    2000006
+  ],
+  "inference_seeds": [
+    42,
+    1000045,
+    2000048
+  ],
+  "seed0": "Existing fully audited Table2/Table3 results; all original method-specific RNG formulas retained",
+  "new_replicates": "Independent centroid initializations and original randomized training subsamples; same videos and hyperparameters; regenerate codec-dependent loss tables",
+  "fixed_CQ_capacity": true,
+  "budgets_unchanged": true,
+  "complete_questions_per_model": 4280,
+  "ablation_questions_per_model": 2700,
+  "deterministic_methods": [
+    "BF16",
+    "InfiniPot-V",
+    "CoRDS",
+    "SnapKV",
+    "AnchorKV",
+    "PyramidKV",
+    "ExpectedAttention"
+  ],
+  "learned_methods": [
+    "STI-RVQ",
+    "CQ",
+    "GSRQ-export",
+    "NOVA-KV-g8"
+  ],
+  "new_complete_QA_expected": 299000,
+  "new_infeasible_status_rows_expected": 8120,
+  "Table3_main_reused_from_Table2": true,
+  "allowed_GPU_ids": [
+    0,
+    2,
+    3,
+    4,
+    6,
+    7
+  ],
+  "GPU1_used": false,
+  "Torch_cap_GiB": 26,
+  "project_storage_preferred_bytes": 500000000000,
+  "paper": "Tables2/3 report arithmetic mean accuracy over three runs; numerical RNG seeds only in public code; preserve -- infeasibility; no subset, cherry-picking or fabricated variation",
+  "continuity": "No agent-turn cron/loop tool exists. Stay in active turn; resumable local queues and resource sampler are not claimed to be a conversation scheduler.",
+  "deterministic_transport": "Future VL deterministic controls may memoize pure encoding and restore all registered bytes exactly; both native QA repetitions still execute with exact old-token/logit checks; native gate first; no change to learned fits or performance claims"
+}
