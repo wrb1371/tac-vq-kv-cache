@@ -1,5 +1,5 @@
 """Aggregate three complete run files without rounding or averaging subpanels early."""
-import argparse,collections,json,pathlib,statistics
+import argparse,collections,json,math,pathlib
 
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--inputs',nargs=3,required=True);ap.add_argument('--output',required=True);a=ap.parse_args();runs=[];replicates=[];configurations=[]
@@ -31,11 +31,12 @@ def main():
      groups=collections.defaultdict(list)
      for r in rows:groups[r['task_type']].append(r)
      assert set(groups)=={'action','direction','speed','order','attribute_change'}
-     score=sum(100*sum(r['correct']for r in groups[t])/len(groups[t])for t in ['action','direction','speed','order','attribute_change'])/5
+     score=math.fsum(100*sum(r['correct']for r in groups[t])/len(groups[t])for t in ['action','direction','speed','order','attribute_change'])/5
     else:score=100*sum(r['correct']for r in rows)/len(rows)
     values.append(score)
    if any(v is None for v in values):assert all(v is None for v in values);mean=std=None
-   else:mean=sum(values)/3;std=statistics.stdev(values)
+   else:
+    mean=math.fsum(values)/3;offsets=[v-values[0]for v in values];center=math.fsum(offsets)/3;std=math.sqrt(math.fsum((d-center)**2 for d in offsets)/2)
    panels[ds+'/'+axis]={'mean_accuracy_pct':mean,'run_accuracies_pct':values,'sample_std_pct':std,'three_actual_run_files':a.inputs}
  out=pathlib.Path(a.output);out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(panels,indent=2)+'\n');print(json.dumps(panels,indent=2))
 if __name__=='__main__':main()
