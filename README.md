@@ -52,6 +52,8 @@ Conditional-loss calibration and VL codebook fitting use media-only prefixes. Om
 
 Tables 2 and 3 use the mean of three complete runs. [Run details](docs/three_runs.md) give the numerical RNG seeds, original per-family seed formulas, fitting settings, and artifact layout. Add `--replicate 0`, `1`, or `2` to the evaluation command to select a shipped realization. `scripts/aggregate_runs.py` averages the three unrounded run accuracies and computes TempCompass macro within each run before averaging.
 
+[Machine-readable results](results/paper_three_runs.json) include all per-run accuracies, means, and sample standard deviations for both tables.
+
 ## Coupled Quantization baseline
 
 CQ is an independent port of Zhang et al. (NeurIPS 2024). It uses Fisher-weighted private FP16 vector codebooks, before-MRoPE key coding and physically packed 4--10-bit indices. The paper adds a seven-capacity curve at the same complete 64 MiB total budget, and a calibration-selected row on both full benchmarks. The fitted external banks are regenerated with [the CQ recipe](docs/cq.md); they are not bundled with model weights or video data.
