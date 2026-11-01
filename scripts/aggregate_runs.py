@@ -31,7 +31,7 @@ def main():
      groups=collections.defaultdict(list)
      for r in rows:groups[r['task_type']].append(r)
      assert set(groups)=={'action','direction','speed','order','attribute_change'}
-     score=sum(100*sum(r['correct']for r in group)/len(group)for group in groups.values())/5
+     score=sum(100*sum(r['correct']for r in groups[t])/len(groups[t])for t in ['action','direction','speed','order','attribute_change'])/5
     else:score=100*sum(r['correct']for r in rows)/len(rows)
     values.append(score)
    if any(v is None for v in values):assert all(v is None for v in values);mean=std=None
