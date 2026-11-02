@@ -2,86 +2,39 @@
   "groups": {
     "Omni/VideoMME_long_64": {
       "C": 256,
-      "c": 8,
-      "codec_bytes": 9437184,
-      "maximum_resident_bytes": 66875968,
-      "budget_bytes": 67108864,
-      "videos": 300,
-      "validation_loss": 0.1794671568883233,
-      "package_receipt_SHA256": "14920f26cd62377c7cd8f96e9ff59adb35799caa98f2928a66bc5c6ba0457257"
+      "c": 8
     },
     "Omni/VideoMME_medium_32": {
       "C": 128,
-      "c": 8,
-      "codec_bytes": 4718592,
-      "maximum_resident_bytes": 31974592,
-      "budget_bytes": 33554432,
-      "videos": 300,
-      "validation_loss": 0.2097543155367829,
-      "package_receipt_SHA256": "8bea7f9b09bea17c9ecdd99751c6ef7c5826278832225d0a73a41f03660dec66"
+      "c": 8
     },
     "Omni/TempCompass-MC_short_16": {
       "C": 64,
-      "c": 8,
-      "codec_bytes": 2359296,
-      "maximum_resident_bytes": 16187840,
-      "budget_bytes": 16777216,
-      "videos": 410,
-      "validation_loss": 0.2420031667378074,
-      "package_receipt_SHA256": "03e45ab2148024482fb1bf1ca036953336073a424c72d65c9e64b20cdb5d2c8c"
+      "c": 8
     },
     "Omni/VideoMME_short_16": {
       "C": 64,
-      "c": 8,
-      "codec_bytes": 2359296,
-      "maximum_resident_bytes": 16076224,
-      "budget_bytes": 16777216,
-      "videos": 300,
-      "validation_loss": 0.2420031667378074,
-      "package_receipt_SHA256": "03e45ab2148024482fb1bf1ca036953336073a424c72d65c9e64b20cdb5d2c8c"
+      "c": 8
     },
     "VL/VideoMME_long_96": {
       "C": 128,
-      "c": 8,
-      "codec_bytes": 7340032,
-      "maximum_resident_bytes": 83464048,
-      "budget_bytes": 100663296,
-      "videos": 300,
-      "validation_loss": 0.17078639785966793,
-      "package_receipt_SHA256": "931e21f9440713f3219c2480e48eca4d6ccea45e36bebe2fe48298f969e10967"
+      "c": 8
     },
     "VL/VideoMME_medium_64": {
       "C": 32,
-      "c": 4,
-      "codec_bytes": 1835008,
-      "maximum_resident_bytes": 57331184,
-      "budget_bytes": 67108864,
-      "videos": 300,
-      "validation_loss": 0.12833377280636732,
-      "package_receipt_SHA256": "46aded465a948efec1cc49d886c282d4bc41d8fe81fb1493fba601afa2ecfb6f"
+      "c": 4
     },
     "VL/TempCompass-MC_short_16": {
       "C": 64,
-      "c": 16,
-      "codec_bytes": 3670016,
-      "maximum_resident_bytes": 14503664,
-      "budget_bytes": 16777216,
-      "videos": 410,
-      "validation_loss": 0.24340375123709432,
-      "package_receipt_SHA256": "fed4ca5bf51f1f42ab52747cd1188fb19e40b8b8d6c5724dc3b7575db9c35169"
+      "c": 16
     },
     "VL/VideoMME_short_32": {
       "C": 32,
-      "c": 4,
-      "codec_bytes": 1835008,
-      "maximum_resident_bytes": 31146736,
-      "budget_bytes": 33554432,
-      "videos": 300,
-      "validation_loss": 0.11749805884310913,
-      "package_receipt_SHA256": "46aded465a948efec1cc49d886c282d4bc41d8fe81fb1493fba601afa2ecfb6f"
+      "c": 4
     }
   },
-  "selection_without_test_QA": true,
-  "selection_split": "media-only heldout positions",
-  "calibration_sources": 24
+  "format_rule": "Operating-point formats frozen before WorldSense refitting; no format reselection in this migration.",
+  "calibration_sources": "manifests/ar39/WorldSense_CAL64_ids.json",
+  "centroids_refitted_on": "WorldSense64",
+  "benchmark_answer_selection": false
 }

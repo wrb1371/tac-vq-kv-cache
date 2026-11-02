@@ -16,7 +16,7 @@ options = [
 chosen, proof = allocate(options, 21, quantum=1)
 assert sum(x["bytes"] for x in chosen) <= 21 and proof["objective"] == 4
 assert sum(layer_quotas(497, 4, 241, 64)) == 497
-from ar38replica.paths import use
+from ar39cal.paths import use
 for replicate in [0, 1, 2]:
     with use(replicate):
         for p in [

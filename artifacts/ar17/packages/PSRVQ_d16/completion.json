@@ -1,35 +1,27 @@
 {
-  "run_id": "E08_train_d16_v1",
-  "source_SHA256": "0d4216f71d7b74b7f0ca009798f7db67b88cdc7d06864c2634beb22ea7785244",
-  "CAL_completion_SHA256": "b1c92f2a0bf5dd94fca0f5d443dbdcee25de36e8745d153acd1e8be4d15ba1b7",
-  "direct_parent_SHA256": "0f33bbf371f3b1371f9dcc096e74725cdf4ae137d40c3bcb5b9ad4bb2badc9c7",
-  "slot_manifest_SHA256": "e45a0bc98148e1201ae4c6b7123161b3eb03afe072035425b03aec4c3ff71949",
-  "no_parent_centroids": true,
-  "adapters_inherited_exact": true,
-  "started_epoch": 1792766653.862802,
-  "group_dim": 16,
-  "stages": 6,
-  "iterations": 20,
-  "training_scope": "historical CAL log-gradient weights, no DEV answers",
-  "independent_confirmation": false,
   "completed": true,
   "CPU_export": true,
-  "family": "PSRVQ",
-  "Rmax_K": 6,
-  "Rmax_V": 6,
   "records": [
     {
       "layer": 0,
       "file": "global.pt",
-      "SHA256": "d7ac4c4991ea0aa871dcbf2d1709cd85ea49363637917d81c015f0b664c24fb2",
+      "SHA256": "c42a215ea8c3a6ce939983822206f11f587a4b5954845bfbc2f1310e6b67b056",
       "tensors": {
+        "H": {
+          "shape": [
+            128,
+            128
+          ],
+          "dtype": "torch.float32",
+          "storage_bytes": 65536
+        },
         "K_mean": {
           "shape": [
             36,
             2,
             128
           ],
-          "dtype": "torch.bfloat16",
+          "dtype": "torch.float16",
           "storage_bytes": 18432
         },
         "K_scale": {
@@ -38,34 +30,8 @@
             2,
             128
           ],
-          "dtype": "torch.bfloat16",
+          "dtype": "torch.float16",
           "storage_bytes": 18432
-        },
-        "V_mean": {
-          "shape": [
-            36,
-            2,
-            128
-          ],
-          "dtype": "torch.bfloat16",
-          "storage_bytes": 18432
-        },
-        "V_scale": {
-          "shape": [
-            36,
-            2,
-            128
-          ],
-          "dtype": "torch.bfloat16",
-          "storage_bytes": 18432
-        },
-        "H": {
-          "shape": [
-            128,
-            128
-          ],
-          "dtype": "torch.float32",
-          "storage_bytes": 65536
         },
         "K_books": {
           "shape": [
@@ -75,6 +41,24 @@
           ],
           "dtype": "torch.float16",
           "storage_bytes": 49152
+        },
+        "V_mean": {
+          "shape": [
+            36,
+            2,
+            128
+          ],
+          "dtype": "torch.float16",
+          "storage_bytes": 18432
+        },
+        "V_scale": {
+          "shape": [
+            36,
+            2,
+            128
+          ],
+          "dtype": "torch.float16",
+          "storage_bytes": 18432
         },
         "V_books": {
           "shape": [
@@ -89,8 +73,18 @@
     }
   ],
   "static_tensor_bytes": 237568,
-  "finished_epoch": 1792766674.5952957,
-  "elapsed_s": 20.73249387741089,
-  "H_orthogonality_MSE": 3.5027379937586684e-17,
-  "new_algorithm_claim": false
+  "calibration": "WorldSense64, video-text only",
+  "labels_used": true,
+  "no_benchmark_media_or_QA_used": true,
+  "family": "PSRVQ",
+  "Rmax_K": 6,
+  "Rmax_V": 6,
+  "model": "Omni",
+  "replicate": 0,
+  "global_SHA256": "c42a215ea8c3a6ce939983822206f11f587a4b5954845bfbc2f1310e6b67b056",
+  "adapters_inherited_exact": false,
+  "group_dim": 16,
+  "stages": 6,
+  "gradient_supervision": "WorldSense gold-option cross entropy; frozen backbone",
+  "source_completion_SHA256": "21ab8834d927d6d6c9c39a49804d5e9bd940891fa4a54c54b6dd37eea07be274"
 }

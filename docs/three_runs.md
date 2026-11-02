@@ -16,27 +16,19 @@ For replicate `j in {0,1,2}`, add `delta_j = j * 1000003` to every original meth
 | VL NOVA layer `l`, head `h` | `14261021 + 4*l + h` |
 | CQ layer `l`, side `s`, dictionary size `C`, coupling `c` | `20261031 + 100000*l + 10000*s + C + c` |
 
-NOVA's training subsample uses its layer/head seed plus 140000. CQ keeps the originally selected `(C,c)` for each task/budget; it does not repeat the capacity selection on test questions. Its internal restarts follow `src/ar37cq/fitting.py`. The fitting drivers preserve 20 Lloyd iterations for shared STI-RVQ, 40 for GSRQ, 25 for NOVA, and CQ's original convergence/restart settings. Initialization and randomized block selection change; the normalization parameters and deployed physical formats remain fixed.
+The current fits use 256 visual samples per head and video, with every fourth position held out and 192 training samples per source. Shared RVQ draws 262,144 subvectors across layers and heads. NOVA uses the complete training pool for each head; it has no additional 140000-offset subsample. The formats and Lloyd iteration counts remain fixed: 20 for shared RVQ, 40 for GSRQ, and 25 for NOVA; CQ retains its documented restarts. All three realizations are freshly fitted on WorldSense. Normalization uses the same deterministic training subset for every realization.
 
-BF16 and the six token-selection controls have no randomized fitting step. Their extra model executions are checked against the reference tokens and option logits. Equal outputs remain equal; the release does not add artificial variance. The evaluation harness may memoize deterministic preprocessing: it restores every registered storage byte from a CPU snapshot before the second repetition, verifies byte equality, and still executes every native question forward. This affects evaluation setup cost, not the compression algorithm or its deployed timing measurements.
+BF16 and token selectors have no fitted calibration parameters. Their unchanged actual observations can be reused when model weights, inputs, algorithm and budgets are identical; no artificial run variance is added.
 
 ## Evaluate the shipped STI-RVQ runs
 
-Both backbones' three small shared codecs and their matched loss tables are included. The reference artifacts retain their existing paths. The two new realizations are stored under `artifacts/ar38/replicas/r1/` and `r2/`, with the same internal relative layout. `--replicate` redirects reads of learned artifacts and resets the inference RNG. It never substitutes another replicate's codec-dependent curves.
+Both backbones' three shared codecs and matched tables are stored under `artifacts/ar39/replicas/r0/`, `r1/`, and `r2/`. Canonical reference paths also contain the new realization 0. `--replicate` redirects every learned read, including realization 0 and fixed-innovation slices, and resets the inference RNG. No old Video-MME-fitted table is used.
 
-```bash
-python scripts/evaluate.py --backbone vl7b --model-dir external_inputs/Qwen2.5-VL-7B-Instruct --manifest external_inputs/questions.json --reference-reader --replicate 0 --output outputs/vl_run0.jsonl
-python scripts/evaluate.py --backbone vl7b --model-dir external_inputs/Qwen2.5-VL-7B-Instruct --manifest external_inputs/questions.json --reference-reader --replicate 1 --output outputs/vl_run1.jsonl
-python scripts/evaluate.py --backbone vl7b --model-dir external_inputs/Qwen2.5-VL-7B-Instruct --manifest external_inputs/questions.json --reference-reader --replicate 2 --output outputs/vl_run2.jsonl
-```
+Run `scripts/evaluate.py` with the selected backbone, external model directory, complete manifest, `--replicate 0`, `1`, or `2`, and a distinct output path. The VL quality evaluation uses the fused reader; `--reference-reader` is an independent check. For an external baseline, pass that realization's bank root through `--baseline-root`. Large external banks are regenerated, not bundled.
 
-Use `--backbone omni3b` and its model directory for Omni. The VL table-replication commands use the independent reader to match the repeated quality evaluation. Omitting `--reference-reader` selects the fused implementation; the reference-codec execution and equality study is reported separately. Each manifest must contain the complete declared benchmark, including the original per-duration budgets and query reserves. Keep external baseline banks matched to both the backbone and replicate. When using `--baseline-root`, pass the corresponding replicate's external root directly; large CQ/GSRQ/NOVA banks are regenerated rather than bundled.
+## Fitting inputs
 
-## Fitting inputs and recovery
-
-The `scripts/ar38_fit_*.py` drivers record their seeds, sampled block indices, fitted bank hashes, and calibration receipts. They retain the original fitting algorithms and intermediate-file layouts. Re-running fitting requires preparing the documented external calibration data and capture receipts at the indicated relative paths; the standalone `scripts/evaluate.py` command only requires the shipped STI-RVQ banks and external model/video inputs. Experiment-specific private audit queues are not public entrypoints.
-
-Omni's old full CAL64 reservoir had been deleted before this replication. It was recovered from the same 64 original WorldSense videos using the original source-keyed priority reservoir and answer-cross-entropy gradient objective on the separate calibration records, with CPU offload of saved autograd tensors. The recovered 1,612,520 prefix positions match the original count; reservoir coordinates, source/token indices, and modality bytes match the original hashes. Freshly captured gradient files are not byte-identical to the removed files. This recovery is recorded explicitly rather than presented as a bit-identical restoration. A compact K-pre-RoPE/value reservoir derives post-RoPE keys from their original coordinates. Its large regenerable arrays are deleted after both new fits; fitted artifacts and recovery receipts remain available.
+The `scripts/ar39_prepare.py`, `ar39_capture.py`, `ar39_fit.py`, and `ar39_calibrate.py` drivers reproduce common input preparation, native capture, fitting and codec-dependent loss measurement. [Calibration notes](calibration.md) describe external annotation/media placement and capture attempt IDs. The evaluation command needs only the shipped inference artifacts and external model/video inputs. Raw capture pools and experimental audit queues are not public payloads.
 
 ## Aggregation
 

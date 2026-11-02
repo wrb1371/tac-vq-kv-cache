@@ -1,0 +1,90 @@
+{
+  "completed": true,
+  "CPU_export": true,
+  "records": [
+    {
+      "layer": 0,
+      "file": "global.pt",
+      "SHA256": "74ecc7b5955de10f407ac1e5dfe1e3acbcb384a7f619ce0ec83f22406d85d613",
+      "tensors": {
+        "H": {
+          "shape": [
+            128,
+            128
+          ],
+          "dtype": "torch.float32",
+          "storage_bytes": 65536
+        },
+        "K_mean": {
+          "shape": [
+            28,
+            4,
+            128
+          ],
+          "dtype": "torch.float16",
+          "storage_bytes": 28672
+        },
+        "K_scale": {
+          "shape": [
+            28,
+            4,
+            128
+          ],
+          "dtype": "torch.float16",
+          "storage_bytes": 28672
+        },
+        "K_books": {
+          "shape": [
+            6,
+            256,
+            16
+          ],
+          "dtype": "torch.float16",
+          "storage_bytes": 49152
+        },
+        "V_mean": {
+          "shape": [
+            28,
+            4,
+            128
+          ],
+          "dtype": "torch.float16",
+          "storage_bytes": 28672
+        },
+        "V_scale": {
+          "shape": [
+            28,
+            4,
+            128
+          ],
+          "dtype": "torch.float16",
+          "storage_bytes": 28672
+        },
+        "V_books": {
+          "shape": [
+            6,
+            256,
+            16
+          ],
+          "dtype": "torch.float16",
+          "storage_bytes": 49152
+        }
+      }
+    }
+  ],
+  "static_tensor_bytes": 278528,
+  "calibration": "WorldSense64, video-text only",
+  "labels_used": true,
+  "no_benchmark_media_or_QA_used": true,
+  "family": "STI-RVQ",
+  "Rmax_K": 6,
+  "Rmax_V": 6,
+  "model": "VL",
+  "replicate": 2,
+  "global_SHA256": "74ecc7b5955de10f407ac1e5dfe1e3acbcb384a7f619ce0ec83f22406d85d613",
+  "adapters_inherited_exact": false,
+  "group_dim": 16,
+  "stages": 6,
+  "gradient_supervision": "WorldSense gold-option cross entropy; frozen backbone",
+  "source_completion_SHA256": "129264e89b2869ff6ef3a7093c3895c2410daaf83995e0e645a328a54034d5d6"
+}

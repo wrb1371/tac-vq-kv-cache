@@ -413,6 +413,6 @@ if __name__ == "__main__":
     bootstrap = argparse.ArgumentParser(add_help=False)
     bootstrap.add_argument("--replicate", type=int, default=0)
     selected, _ = bootstrap.parse_known_args()
-    from ar38replica.paths import use
+    from ar39cal.paths import use
     with use(selected.replicate):
         main()

@@ -1,98 +1,450 @@
 [
   {
-    "source_id": "VideoMME:nVtTVt9csBc",
-    "duration_group": "short"
+    "id": "hPTJElGk_task1",
+    "source_id": "WorldSense/hPTJElGk.mp4",
+    "original_video": "hPTJElGk.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
   },
   {
-    "source_id": "VideoMME:27YZLpw0M98",
-    "duration_group": "short"
+    "id": "dfUnXXsc_task0",
+    "source_id": "WorldSense/dfUnXXsc.mp4",
+    "original_video": "dfUnXXsc.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
   },
   {
-    "source_id": "VideoMME:bHt0Riqz0qo",
-    "duration_group": "short"
+    "id": "XRHkcodm_task2",
+    "source_id": "WorldSense/XRHkcodm.mp4",
+    "original_video": "XRHkcodm.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
   },
   {
-    "source_id": "VideoMME:EJ_yarUrgVQ",
-    "duration_group": "short"
+    "id": "oXKfEYqY_task0",
+    "source_id": "WorldSense/oXKfEYqY.mp4",
+    "original_video": "oXKfEYqY.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
   },
   {
-    "source_id": "VideoMME:Kv1JXuOkAfk",
-    "duration_group": "short"
+    "id": "RHdUFnIx_task0",
+    "source_id": "WorldSense/RHdUFnIx.mp4",
+    "original_video": "RHdUFnIx.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
   },
   {
-    "source_id": "VideoMME:_cZXyj6rYVg",
-    "duration_group": "short"
+    "id": "gZUJOumt_task0",
+    "source_id": "WorldSense/gZUJOumt.mp4",
+    "original_video": "gZUJOumt.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
   },
   {
-    "source_id": "VideoMME:ByUONqA1IJY",
-    "duration_group": "short"
+    "id": "lFzfysgv_task0",
+    "source_id": "WorldSense/lFzfysgv.mp4",
+    "original_video": "lFzfysgv.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
   },
   {
-    "source_id": "VideoMME:IzQ2siryQrM",
-    "duration_group": "short"
+    "id": "QNkWMgsF_task1",
+    "source_id": "WorldSense/QNkWMgsF.mp4",
+    "original_video": "QNkWMgsF.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
   },
   {
-    "source_id": "VideoMME:0FM64MrRuZE",
-    "duration_group": "medium"
+    "id": "PuiIJOvI_task1",
+    "source_id": "WorldSense/PuiIJOvI.mp4",
+    "original_video": "PuiIJOvI.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
   },
   {
-    "source_id": "VideoMME:kSBB5PsRV-k",
-    "duration_group": "medium"
+    "id": "soDBpPyd_task0",
+    "source_id": "WorldSense/soDBpPyd.mp4",
+    "original_video": "soDBpPyd.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
   },
   {
-    "source_id": "VideoMME:OApAF--FqLA",
-    "duration_group": "medium"
+    "id": "UItmoRNs_task0",
+    "source_id": "WorldSense/UItmoRNs.mp4",
+    "original_video": "UItmoRNs.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
   },
   {
-    "source_id": "VideoMME:dez7DLniEJA",
-    "duration_group": "medium"
+    "id": "bvQEVvCH_task0",
+    "source_id": "WorldSense/bvQEVvCH.mp4",
+    "original_video": "bvQEVvCH.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
   },
   {
-    "source_id": "VideoMME:V6ui161NyTg",
-    "duration_group": "medium"
+    "id": "bYSLkryp_task0",
+    "source_id": "WorldSense/bYSLkryp.mp4",
+    "original_video": "bYSLkryp.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
   },
   {
-    "source_id": "VideoMME:pmF41T52nJs",
-    "duration_group": "medium"
+    "id": "nGZPRohb_task2",
+    "source_id": "WorldSense/nGZPRohb.mp4",
+    "original_video": "nGZPRohb.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
   },
   {
-    "source_id": "VideoMME:9SEMSQDO-pg",
-    "duration_group": "medium"
+    "id": "rXfMpPyy_task0",
+    "source_id": "WorldSense/rXfMpPyy.mp4",
+    "original_video": "rXfMpPyy.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
   },
   {
-    "source_id": "VideoMME:MaAv2IVzqhM",
-    "duration_group": "medium"
+    "id": "GsoanCMe_task2",
+    "source_id": "WorldSense/GsoanCMe.mp4",
+    "original_video": "GsoanCMe.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
   },
   {
-    "source_id": "VideoMME:wxff_4tDauo",
-    "duration_group": "long"
+    "id": "GLeoqUaW_task0",
+    "source_id": "WorldSense/GLeoqUaW.mp4",
+    "original_video": "GLeoqUaW.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
   },
   {
-    "source_id": "VideoMME:UyaKyS2wTQk",
-    "duration_group": "long"
+    "id": "dpyuxcpa_task0",
+    "source_id": "WorldSense/dpyuxcpa.mp4",
+    "original_video": "dpyuxcpa.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
   },
   {
-    "source_id": "VideoMME:mAwgdX5VxGc",
-    "duration_group": "long"
+    "id": "fusoYZoM_task0",
+    "source_id": "WorldSense/fusoYZoM.mp4",
+    "original_video": "fusoYZoM.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
   },
   {
-    "source_id": "VideoMME:AnWKOvjFl8k",
-    "duration_group": "long"
+    "id": "pDXLVdRH_task0",
+    "source_id": "WorldSense/pDXLVdRH.mp4",
+    "original_video": "pDXLVdRH.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
   },
   {
-    "source_id": "VideoMME:eZ5lFBPpRkM",
-    "duration_group": "long"
+    "id": "oovwWWMl_task1",
+    "source_id": "WorldSense/oovwWWMl.mp4",
+    "original_video": "oovwWWMl.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
   },
   {
-    "source_id": "VideoMME:1evyOuQz-jM",
-    "duration_group": "long"
+    "id": "KbVeuqQH_task0",
+    "source_id": "WorldSense/KbVeuqQH.mp4",
+    "original_video": "KbVeuqQH.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
   },
   {
-    "source_id": "VideoMME:FQd5bo9nIZs",
-    "duration_group": "long"
+    "id": "yeqcNPai_task0",
+    "source_id": "WorldSense/yeqcNPai.mp4",
+    "original_video": "yeqcNPai.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
   },
   {
-    "source_id": "VideoMME:D0ZMmQjKn2Q",
-    "duration_group": "long"
+    "id": "WzKwhSic_task2",
+    "source_id": "WorldSense/WzKwhSic.mp4",
+    "original_video": "WzKwhSic.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "wgRPYHlH_task0",
+    "source_id": "WorldSense/wgRPYHlH.mp4",
+    "original_video": "wgRPYHlH.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
+  },
+  {
+    "id": "jYrthEYL_task0",
+    "source_id": "WorldSense/jYrthEYL.mp4",
+    "original_video": "jYrthEYL.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
+  },
+  {
+    "id": "AwurESFo_task0",
+    "source_id": "WorldSense/AwurESFo.mp4",
+    "original_video": "AwurESFo.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "EHwWoWYE_task0",
+    "source_id": "WorldSense/EHwWoWYE.mp4",
+    "original_video": "EHwWoWYE.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
+  },
+  {
+    "id": "uEkEvyJM_task0",
+    "source_id": "WorldSense/uEkEvyJM.mp4",
+    "original_video": "uEkEvyJM.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
+  },
+  {
+    "id": "heOrfYdb_task1",
+    "source_id": "WorldSense/heOrfYdb.mp4",
+    "original_video": "heOrfYdb.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "EhikGjbZ_task2",
+    "source_id": "WorldSense/EhikGjbZ.mp4",
+    "original_video": "EhikGjbZ.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
+  },
+  {
+    "id": "wIyITRFB_task0",
+    "source_id": "WorldSense/wIyITRFB.mp4",
+    "original_video": "wIyITRFB.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
+  },
+  {
+    "id": "eyENnlBD_task0",
+    "source_id": "WorldSense/eyENnlBD.mp4",
+    "original_video": "eyENnlBD.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "PdpWrLsy_task0",
+    "source_id": "WorldSense/PdpWrLsy.mp4",
+    "original_video": "PdpWrLsy.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
+  },
+  {
+    "id": "YLMMLsAq_task0",
+    "source_id": "WorldSense/YLMMLsAq.mp4",
+    "original_video": "YLMMLsAq.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
+  },
+  {
+    "id": "XYAYaULv_task0",
+    "source_id": "WorldSense/XYAYaULv.mp4",
+    "original_video": "XYAYaULv.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "eFmgqjpo_task1",
+    "source_id": "WorldSense/eFmgqjpo.mp4",
+    "original_video": "eFmgqjpo.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
+  },
+  {
+    "id": "DMCVJPdj_task0",
+    "source_id": "WorldSense/DMCVJPdj.mp4",
+    "original_video": "DMCVJPdj.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
+  },
+  {
+    "id": "gEAyCcwr_task0",
+    "source_id": "WorldSense/gEAyCcwr.mp4",
+    "original_video": "gEAyCcwr.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "zLfhsrxJ_task0",
+    "source_id": "WorldSense/zLfhsrxJ.mp4",
+    "original_video": "zLfhsrxJ.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
+  },
+  {
+    "id": "YTQpYvwq_task0",
+    "source_id": "WorldSense/YTQpYvwq.mp4",
+    "original_video": "YTQpYvwq.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
+  },
+  {
+    "id": "druJhtnF_task0",
+    "source_id": "WorldSense/druJhtnF.mp4",
+    "original_video": "druJhtnF.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "FHxtBJyb_task0",
+    "source_id": "WorldSense/FHxtBJyb.mp4",
+    "original_video": "FHxtBJyb.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
+  },
+  {
+    "id": "cQTAodvu_task0",
+    "source_id": "WorldSense/cQTAodvu.mp4",
+    "original_video": "cQTAodvu.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
+  },
+  {
+    "id": "MyeHDJxB_task0",
+    "source_id": "WorldSense/MyeHDJxB.mp4",
+    "original_video": "MyeHDJxB.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "sEsyAQxf_task0",
+    "source_id": "WorldSense/sEsyAQxf.mp4",
+    "original_video": "sEsyAQxf.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
+  },
+  {
+    "id": "hYVzvKzs_task1",
+    "source_id": "WorldSense/hYVzvKzs.mp4",
+    "original_video": "hYVzvKzs.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
+  },
+  {
+    "id": "tQBLkmtB_task1",
+    "source_id": "WorldSense/tQBLkmtB.mp4",
+    "original_video": "tQBLkmtB.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "erqXWPoB_task1",
+    "source_id": "WorldSense/erqXWPoB.mp4",
+    "original_video": "erqXWPoB.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
+  },
+  {
+    "id": "mqbRcXdQ_task0",
+    "source_id": "WorldSense/mqbRcXdQ.mp4",
+    "original_video": "mqbRcXdQ.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
+  },
+  {
+    "id": "NnAflpEq_task0",
+    "source_id": "WorldSense/NnAflpEq.mp4",
+    "original_video": "NnAflpEq.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "roHillMF_task1",
+    "source_id": "WorldSense/roHillMF.mp4",
+    "original_video": "roHillMF.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
+  },
+  {
+    "id": "aBOKKdTm_task1",
+    "source_id": "WorldSense/aBOKKdTm.mp4",
+    "original_video": "aBOKKdTm.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
+  },
+  {
+    "id": "HKnCFlXB_task0",
+    "source_id": "WorldSense/HKnCFlXB.mp4",
+    "original_video": "HKnCFlXB.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "yaduLHSo_task0",
+    "source_id": "WorldSense/yaduLHSo.mp4",
+    "original_video": "yaduLHSo.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
+  },
+  {
+    "id": "CJrXMdiM_task1",
+    "source_id": "WorldSense/CJrXMdiM.mp4",
+    "original_video": "CJrXMdiM.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
+  },
+  {
+    "id": "fBsxdmSA_task0",
+    "source_id": "WorldSense/fBsxdmSA.mp4",
+    "original_video": "fBsxdmSA.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "NfqKjvcz_task0",
+    "source_id": "WorldSense/NfqKjvcz.mp4",
+    "original_video": "NfqKjvcz.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
+  },
+  {
+    "id": "GKJNrORU_task1",
+    "source_id": "WorldSense/GKJNrORU.mp4",
+    "original_video": "GKJNrORU.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
+  },
+  {
+    "id": "geBYSdUC_task2",
+    "source_id": "WorldSense/geBYSdUC.mp4",
+    "original_video": "geBYSdUC.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "tnfuJyYK_task0",
+    "source_id": "WorldSense/tnfuJyYK.mp4",
+    "original_video": "tnfuJyYK.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
+  },
+  {
+    "id": "xpyDxKTB_task0",
+    "source_id": "WorldSense/xpyDxKTB.mp4",
+    "original_video": "xpyDxKTB.mp4",
+    "geometry_group": "medium",
+    "sample_frames": 128
+  },
+  {
+    "id": "CXcpoczR_task1",
+    "source_id": "WorldSense/CXcpoczR.mp4",
+    "original_video": "CXcpoczR.mp4",
+    "geometry_group": "long",
+    "sample_frames": 256
+  },
+  {
+    "id": "ejEIzXua_task0",
+    "source_id": "WorldSense/ejEIzXua.mp4",
+    "original_video": "ejEIzXua.mp4",
+    "geometry_group": "short",
+    "sample_frames": 64
   }
 ]

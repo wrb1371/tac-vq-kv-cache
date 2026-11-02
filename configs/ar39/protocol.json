@@ -1,0 +1,74 @@
+{
+  "revision": "AR39_WorldSense64_all_calibration",
+  "scope_user": "Both backbones, all fitted artifacts and planning curves use WorldSense only; rerun both models.",
+  "calibration_sources": "manifests/round14/CAL64_one_question.json",
+  "calibration_source_SHA256": "6b9cfbaba088be4dea23cf7b5479c1e651f1cd99b4fadc683436fe82410c47bd",
+  "source_count": 64,
+  "models": [
+    "Omni",
+    "VL"
+  ],
+  "replicates": [
+    0,
+    1,
+    2
+  ],
+  "fit_seed_offsets": [
+    0,
+    1000003,
+    2000006
+  ],
+  "inference_seeds": [
+    42,
+    1000045,
+    2000048
+  ],
+  "calibration_input": "Video-text only, common resized uint8 frames at max384^2 pixels, source-clock positions. The same64source videos and WorldSense gold-option questions on both backbones. No benchmark questions or answers enter fitting.",
+  "calibration_views": "Deterministic source-hash ordering cycles through64/128/256frames; groups denote input geometry, not actual source duration. One view per source, same pixels for both models.",
+  "per_video_per_head_fit_samples": 256,
+  "shared_RVQ": {
+    "group_dim": 16,
+    "centroids": 256,
+    "stages": 6,
+    "iterations": 20,
+    "training_subvectors": 262144
+  },
+  "GSRQ": "Retain original family FP16 fitting and FP8 export, independently fitted per layer/head; common source vectors/gradient-norm weights with shared RVQ.",
+  "CQ": "Same frozen C/c operating formats, fit Fisher-weighted centroids on WorldSense gold-option gradients; do not select formats or seeds on test accuracy.",
+  "NOVA": "Native Q/K/output moments and bounded real keys from the64WorldSense videos; original group8 format and byte accounting.",
+  "loss_tables": "All conditional and depth-rate curves measured afresh for each model and seed on WorldSense pre-question prefixes; no Video-MME or TempCompass videos used.",
+  "evaluation": {
+    "VideoMME": 2700,
+    "TempCompass-MC": 1580,
+    "Omni_budgets_MiB": [
+      16,
+      32,
+      64
+    ],
+    "VL_budgets_MiB": [
+      32,
+      64,
+      96
+    ],
+    "TempCompass_budget_MiB": 16,
+    "ablations": 11,
+    "means_over_three_independent_fits": true,
+    "full_panels_no_score_based_filtering": true
+  },
+  "unchanged_controls": "Reuse the previously audited complete three-run predictions for BF16 and deterministic non-fitted selectors; their model weights, inputs, seeds and algorithms are unchanged. Explicit source hashes retained. Run native equality gates before reuse.",
+  "expected_new_main_and_ablation_status_rows": 280920,
+  "GPU1_used": false,
+  "allowed_GPU_ids": [
+    0,
+    2,
+    3,
+    4,
+    6,
+    7
+  ],
+  "project_storage_preferred_bytes": 500000000000,
+  "paper": "Update all results that depend on the changed codec; preserve canonical PDF until new experiments and layout checks finish.12science pages,AI/references13,noappendix.",
+  "public_release": "Source/seed recipes/small deployable codecs only; no specific experimental results.",
+  "continuity": "No chat-turn cron/loop tool exists. Keep working in active turn; resumable local workers/resource monitor do not constitute agent-turn scheduling.",
+  "hypothesis": "Unified external calibration improves protocol comparability; no direction or size of accuracy change is presumed."
+}

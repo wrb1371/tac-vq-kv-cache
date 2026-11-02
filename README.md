@@ -46,7 +46,7 @@ CUDA_VISIBLE_DEVICES=0 python scripts/benchmark_reader.py --state outputs/states
 
 The reader check compares all reconstructed BF16 values, not only answers. Exact-input native question tests also compare first tokens, option logits, and the charged resident bytes. Operator benchmarks compare the reference, vectorized Torch, and fused readers using warmups and alternating CUDA-event measurements on the same packed state; they record other GPU processes. Compression quality and operator speed are measured separately.
 
-Conditional-loss calibration and VL codebook fitting use media-only prefixes. Omni codebook fitting uses gradient-derived importance weights from the separate WorldSense calibration records. The current test question and answer never enter compression. Frozen codebooks are reused on TempCompass. The complete benchmark reports include all2700Video-MME and1580TempCompass MC questions per model. [Reproducibility notes](docs/reproducibility.md) describe the fitted artifacts and how to prepare external baseline banks; aggregate tables are not substitutes for executing inference.
+Both backbones use the same 64 WorldSense videos for every fitted codebook, normalization tensor, and planning loss table. The common calibration inputs are video-text only. Codebook importance weights come from WorldSense calibration questions; planning losses use media prefixes without their questions or answers. Video-MME and TempCompass provide no samples or loss measurements to these fits. The current test question and answer never enter compression. Frozen codebooks are reused on TempCompass. The complete benchmark reports include all2700Video-MME and1580TempCompass MC questions per model. [Reproducibility notes](docs/reproducibility.md) describe the fitted artifacts and how to prepare external baseline banks; aggregate tables are not substitutes for executing inference.
 
 ## Three-run evaluation
 
@@ -56,7 +56,7 @@ Generated predictions, benchmark scores, and timing reports stay local under `ou
 
 ## Coupled Quantization baseline
 
-CQ is an independent port of Zhang et al. (NeurIPS 2024). It uses Fisher-weighted private FP16 vector codebooks, before-MRoPE key coding and physically packed 4--10-bit indices. The paper adds a seven-capacity curve at the same complete 64 MiB total budget, and a calibration-selected row on both full benchmarks. The fitted external banks are regenerated with [the CQ recipe](docs/cq.md); they are not bundled with model weights or video data.
+CQ is an independent port of Zhang et al. (NeurIPS 2024). It uses Fisher-weighted private FP16 vector codebooks, before-MRoPE key coding and physically packed 4--10-bit indices. The paper adds a seven-capacity curve at the same complete 64 MiB total budget, and fixed operating-point formats on both full benchmarks. The fitted external banks are regenerated with [the CQ recipe](docs/cq.md); they are not bundled with model weights or video data.
 
 ```bash
 python scripts/evaluate.py --method cq --backbone vl7b --model-dir external_inputs/Qwen2.5-VL-7B-Instruct --baseline-root external_inputs/cq_banks --manifest external_inputs/questions.json --output outputs/cq_vl7b.jsonl

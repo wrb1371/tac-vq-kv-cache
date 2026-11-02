@@ -1,13 +1,46 @@
-# Calibration and fitting sources
+# Unified WorldSense calibration
 
-The shipped frozen banks/tables support evaluation immediately; dense calibration vectors are not required for inference.
+Both backbones use the same 64 source videos. The ID-only list is
+`manifests/ar39/WorldSense_CAL64_ids.json`; obtain videos and their question
+annotations from the original WorldSense distribution. Raw questions, model
+weights, videos, captured K/V arrays and experiment outputs are not bundled.
 
-The declared 24 media-only Video-MME sources are in `manifests/ar22/MEDIA_CAL24.json`. Supply their exact lossless frame archives under `external_inputs/frames` and source videos under `external_inputs/raw`. The prompt is a neutral description suffix; calibration captures only the video prefix. Source frame sampling and clock handling use `scripts/sample_video.py`.
+The capture drivers retain their original relative layout. Place the selected
+annotation records in `manifests/round14/CAL64_one_question.json`, and raw videos
+in `assets/round13/WorldSense/videos/`. Each annotation record contains `id`,
+`video`, `task_type`, and a `conversations` list with a human question/options
+and a GPT gold-option letter. Keep the 64 records identified by the shipped list.
+Model snapshots use the paths in `src/r14kv/common.py` and `src/ar28kv/runtime.py`;
+the standalone evaluation command separately accepts `--model-dir`.
+Refit in a separate working checkout. Move its bundled
+`artifacts/ar39/replicas` directory into a backup location before fitting;
+the fitting driver intentionally refuses to overwrite an existing bank.
 
-The retained native calibration drivers use historical relative paths. For these optional refitting drivers, link the Omni model at `assets/round13/models/Qwen2.5-Omni-3B` and the VL model at `artifacts/ar26/models/Qwen2.5-VL-7B-Instruct`. They resolve inside this checkout. The public evaluation CLI instead accepts `--model-dir` directly.
+Run common input preparation, then capture both backbones before fitting:
 
-For VL, `ar26_vl_capture.py --run-id AR26_VL_MEDIA_CAL24_v1 --data manifests/ar22/MEDIA_CAL24.json` captures 512 deterministic K/V vectors per layer/head and prefix query moments. `ar26_vl_fit.py --run-id YOUR_FIT` fits the shared codec and private five-stage GSRQ controls; `ar26_vl_calibrate.py --run-id YOUR_CURVES` constructs the conditional and depth tables from the 24 prefixes. Longer private GSRQ prefixes use `ar29_fit_private.py`; NOVA fitting uses `ar30_fit_nova.py`. Those fitting programs record package receipts and their exact tensor hashes. Inspect their output paths before replacing any shipped frozen artifact, and refit in a separate checkout.
+```bash
+python scripts/ar39_prepare.py
+CUDA_VISIBLE_DEVICES=0 python scripts/ar39_capture.py --model Omni --attempt v2
+CUDA_VISIBLE_DEVICES=0 python scripts/ar39_capture.py --model VL --attempt v1
+CUDA_VISIBLE_DEVICES=0 python scripts/ar39_fit.py --model Omni --replicate 0
+CUDA_VISIBLE_DEVICES=0 python scripts/ar39_fit.py --model VL --replicate 0
+```
 
-For Omni, `round14_collect_calibration.py` contains the historical WorldSense reservoir and gradient-weight capture. `ar_train_crvq.py`, `ar_train_crvq_v2.py`, and `ar_train_psrvq.py` retain the original normalization, fixed train/validation slots, and six-stage 16-dimensional product-codebook fit. These optional historical drivers expect the recorded reservoir and slot manifests under their documented relative paths; those large external capture artifacts are not shipped. The frozen Omni codec is included so evaluation does not depend on recreating that historical capture. `ar22_calibrate.py` and `ar22_aggregate_calibration.py` construct the label-free occupancy-conditioned tables used by the evaluated planner.
+Repeat fitting for replicas 1 and 2. Each capture uses frozen backbone parameters;
+WorldSense gold-option gradients weight shared RVQ/GSRQ/CQ fitting. NOVA uses
+prefix covariance and feature samples without label weights. After all fits,
+run `ar39_calibrate.py --model Omni --shard 0` for shards 0, 1, and 2 for both models,
+then `ar39_calibrate.py --aggregate Omni` and `--aggregate VL`.
+The planning-loss measurement uses no question or answer. It regenerates the
+full conditional/depth tables and exact fixed-innovation slices for each bank.
 
-The calibration and bank-fitting drivers are source recipes, not claims of a new refit in this release. Reproduction of the reported method uses the shipped banks, table values, frozen policy, declared video inputs, native model revisions, and the public evaluator. The release's reader benchmark checks exact BF16 reconstruction before collecting timings.
+Source clocks and resized pixels match across models. The 64/128/256-frame
+assignment covers storage geometries, not three duration strata. Codebooks,
+normalization and loss tables are model-specific; model weights stay frozen.
+WorldSense's anonymous identifiers do not certify distinct upstream YouTube
+origins from every evaluation source.
+
+The released bank-completion files omit training traces. Conditional tables
+bind the shipped metadata hashes and the original unchanged bank tensor hashes.
+Benchmark predictions, accuracy summaries, ablations, capacity scores and timing
+reports remain local under `outputs/`.
